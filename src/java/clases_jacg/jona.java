@@ -11,6 +11,6 @@ package clases_jacg;
  */
 public class jona {
     public static void main(String[] args) {
-        System.out.println("");
+        System.out.println("te amo");
     }
 }
