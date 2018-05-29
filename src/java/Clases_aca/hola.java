@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clases_jacg;
+package Clases_aca;
 
 /**
  *
- * @author jonat
+ * @author granq
  */
-public class jona {
-    public static void main(String[] args) {
-        System.out.println("");
-    }
+public class hola {
+    
 }
