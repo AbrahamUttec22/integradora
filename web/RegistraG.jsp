@@ -25,6 +25,12 @@
                     <input class="input" type="text" placeholder="&#128100;  Apellido Paterno" required name="apellido_p">
                     <input class="input" type="text" placeholder="&#128100;  Apellido Materno" required name="apellido_m">
                     <input class="input" type="text" placeholder="&#128100;  Telefono" required name="telefono">
+                      <select name="tipo" class="input">
+      <option > Tipo de empleado</option>  
+      <option > Cocinero</option>     
+      <option > Repartidor</option>   
+ 
+  </select>
                     <input class="input" type="text" placeholder="&#128100;  Usuario" required name="usuario">
                     <input class="input" type="password" placeholder="&#9993;  Contraseña" required name="contrasena">
 <div class="btn__form">

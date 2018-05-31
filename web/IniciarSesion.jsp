@@ -56,7 +56,7 @@ header{
             <table >
                 <tr>
                     <td> <a href="PrincipalG.jsp">Gerente </a></td>
-                    <td> <a href="PrincipalU.jsp">Cliente </a></td>
+                    <td> <a href="PrincipalUsuario.jsp">Cliente </a></td>
                 </tr>
             </table>
         </nav>
