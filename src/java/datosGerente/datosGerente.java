@@ -12,7 +12,16 @@ public class datosGerente {
    private String apellido_m;
    private String telefono;
    private String estado;
+   private String rfc;
 
+    public String getRfc() {
+        return rfc;
+    }
+
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
+    }
+   
     public int getId_usuario() {
         return id_usuario;
     }
