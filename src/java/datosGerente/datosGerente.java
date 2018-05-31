@@ -84,8 +84,5 @@ public class datosGerente {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-   
-   
-   
-   
+
 }

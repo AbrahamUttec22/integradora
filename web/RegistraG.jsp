@@ -6,6 +6,13 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+  String validar =(String)request.getAttribute("mensaje");
+
+   if(validar!=null)
+       out.println("<script>alert('"+validar+"')" + "</script>");
+
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,7 +26,7 @@
 		<div class="form__top">
 			<h2>Formulario <span>Registro</span></h2>
 		</div>		
-            <form class="form__reg" action="http://localhost:8080/SWPR/RegistrarE" method="post">
+            <form class="form__reg" action="http://localhost:8080/SWPR/RegistrarE" method="get">
                     <input class="input" type="text" placeholder="&#128100;  Nombre" required autofocus name="nombre">
             
                     <input class="input" type="text" placeholder="&#128100;  Apellido Paterno" required name="apellido_p">

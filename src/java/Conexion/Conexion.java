@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 
 public class Conexion {
-    private Connection conexion=null;
+     private Connection conexion=null;
     private Statement sentenciaSQL=null;
 
     public Connection getConexion() {
@@ -33,7 +33,7 @@ public class Conexion {
         try {
             String controlador="com.mysql.jdbc.Driver";
             Class.forName(controlador).newInstance();
-            conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/LineaAreaAbraham","root","");
+            conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurante","root","");
             sentenciaSQL=getConexion().createStatement();
         } catch (ClassNotFoundException ex) {
             System.out.println("no se pudo cargar el controlador: "+ex.getMessage());
@@ -56,5 +56,6 @@ public class Conexion {
               System.out.println("excepcion sql: "+ex.getMessage());
         }
     }
+  
   
 }
