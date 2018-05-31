@@ -57,7 +57,7 @@ header{
                 <tr>
   <td> <a href="RegistraG.jsp">Registrar </a></td>
   <td> <a href="ActualizarG.jsp">Actualizar </a></td>
-  <td> <a href="ConsultaG.jsp">Consulta </a></td>
+  <td> <a href="ConsultasG.jsp">Consulta </a></td>
   <td> <a href="BajasG.jsp">Dar de baja </a></td>
                 </tr>
             </table>
