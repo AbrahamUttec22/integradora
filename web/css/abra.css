@@ -1,136 +1,126 @@
-*{  
-  margin:0;
-  padding:0;
+html {
+	font-size: 16px;
+    font-family: 'Lato', sans-serif;
 }
 
-body{
-  
-  background-color:#f0f0f0;
-  font-family:helvetica;
+body {
+	background-color: #9AD1ED;
 }
 
-a{
-  display:block;
-  color:#ad5482;  
-  text-decoration:none;
-  font-weight:bold;
-  margin-top:40px;
-  text-align:center;
+.container {
+	max-width: 450px;
+	height: auto;
+	background-color: #EFEFEF;
+	margin: 5% auto;
+	padding-bottom: 1rem;
+	
 }
 
-#bg{
-  position:relative;
-  top:20px;
-  height:600px;
-  width:800px;
-  background:url('https://i.imgur.com/3eP9Z4O.png') center no-repeat;
-  background-size:cover;
-  margin-left:auto;
-  margin-right:auto; 
-  border:#fff 15px solid;
+.form__top {
+	width: 100%;
+	text-align: center;
+	padding: 2rem 0 1rem;
+	border-top: solid .4rem #F39B53;
+	margin-bottom: 1rem;
 }
 
-.module{
-  position:relative;
-  top:15%;    
-  height:70%;
-  width:450px;
-  margin-left:auto;
-  margin-right:auto;
-  border-radius:5px;
-  background:RGBA(255,255,255,1);
-    
-  -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);        
-  box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);
-  
+.form__top h2 {
+	font-weight: bold;
+	color: #CAC8C8;
+	font-size: 18px;
 }
 
-.module ul{
-  list-style-type:none;
-  margin:0;
+h2 span {
+	color: #F39B53;
 }
 
-.tab{
-  float:left;
-  height:60px;
-  width:25%;
-  padding-top:20px;
-  box-sizing:border-box;
-  background:#eeeeee;  
-  text-align:center;
-  cursor:pointer;
-  transition:background .4s;
+.form__reg {
+	padding: 0 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
-.tab:first-child{  
-  -webkit-border-radius: 5px 0px 0px 0px;
-  border-radius: 5px 0px 0px 0px;
+.btn__form {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 1rem;
 }
 
-.tab:last-child{  
-  -webkit-border-radius: 0px 5px 0px 0px;
-  border-radius: 0px 5px 0px 0px;
+.input, .btn__submit, .btn__reset{
+	background-color: #EFEFEF;
+	padding: .5rem;
+	margin: .5rem 0;
+	border: none;
+	border-bottom: solid #C8C8C8 .2rem;
+	transition: all .5s;
 }
 
-.tab:hover{  
-  background-color:rgba(0,0,0,.1);
+.input:focus {
+	border-bottom: solid #F39B53 .2rem;
 }
 
-.activeTab{
-  background:#fff;
+.btn__submit, .btn__reset {
+	width: 40%;
+	border-bottom: none;
+	background-color: #31B1E5;
+	color: white;
 }
 
-.activeTab .icon{
-  opacity:1;
+.btn__reset {
+	background-color: #EDA135;
 }
 
-.icon{
-  height:24px;
-  width:24px;
-  opacity:.2;
+.btn__submit:hover {
+	background-color: #4C9ED9;
 }
 
-.form{
-  float:left;
-  height:86%;
-  width:100%;
-  box-sizing:border-box;
-  padding:40px;
+.btn__reset:hover{
+	background-color: #FA9535;
 }
 
-.textbox{
-  height:50px;
-  width:100%;
-  border-radius:3px;
-  border:rgba(0,0,0,.3) 2px solid;
-  box-sizing:border-box;
-  padding:10px;
-  margin-bottom:30px;
-}
 
-.textbox:focus{
-  outline:none;
-   border:rgba(24,149,215,1) 2px solid;
-   color:rgba(24,149,215,1);
-}
 
-.button{
-  height:50px;
-  width:100%;
-  border-radius:3px;
-  border:rgba(0,0,0,.3) 0px solid;
-  box-sizing:border-box;
-  padding:10px;
-  margin-bottom:30px;
-  background:#90c843;
-  color:#FFF;
-  font-weight:bold;
-  font-size: 12pt;
-  transition:background .4s;
-  cursor:pointer;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-
-.button:hover{
-  background:#80b438;
-  
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }

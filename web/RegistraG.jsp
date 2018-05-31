@@ -14,22 +14,24 @@
  
     </head>
     <body>
-     
-            <div id="bg">
-  <div class="module">
-    <ul>
-      <li class="tab activeTab"><img src="https://i.imgur.com/Fk1Urva.png" alt="" class="icon"/></li>
-  
-    </ul>
-    
-    <form class="form">
-      <input type="text" placeholder="Nombre" class="textbox" />
-      <input type="text" placeholder="Apellido Paterno" class="textbox" />
-      <input type="text" placeholder="Apellido Materno" class="textbox" />
-      <input type="button" value="Next" class="button" />
-    </form>
-  </div>
-</div>
 
+	<div class="container">
+		<div class="form__top">
+			<h2>Formulario <span>Registro</span></h2>
+		</div>		
+            <form class="form__reg" action="http://localhost:8080/SWPR/RegistrarE" method="post">
+                    <input class="input" type="text" placeholder="&#128100;  Nombre" required autofocus name="nombre">
+            
+                    <input class="input" type="text" placeholder="&#128100;  Apellido Paterno" required name="apellido_p">
+                    <input class="input" type="text" placeholder="&#128100;  Apellido Materno" required name="apellido_m">
+                    <input class="input" type="text" placeholder="&#128100;  Telefono" required name="telefono">
+                    <input class="input" type="text" placeholder="&#128100;  Usuario" required name="usuario">
+                    <input class="input" type="password" placeholder="&#9993;  Contraseña" required name="contrasena">
+<div class="btn__form">
+<input class="btn__submit" type="submit" value="REGISTRAR">
+<input class="btn__reset" type="reset" value="LIMPIAR">	
+</div>
+		</form>
+	</div>
     </body>
 </html>
