@@ -26,6 +26,7 @@ public class InsertarE {
         }
      return v;
     }
+    
     public boolean buscarrf(String u){
         boolean v=false;
         String estado="ACTIVO";
@@ -45,9 +46,10 @@ public class InsertarE {
         }
      return v;
     }
+    
     public void insertarE(datosGerente m){
            try {
-             final String sql="{call InsertarEmpleado(?,?,?,?,?,?,?,?,?) }";//declaramos una constante que contendra el nombre del procedimiento almacenado
+             final String sql="{call InsertarEmpleado(?,?,?,?,?,?,?,?,?,?,?) }";//declaramos una constante que contendra el nombre del procedimiento almacenado
 Conexion conecta= new Conexion();
      conecta.Conectar();
 CallableStatement cs=conecta.getConexion().prepareCall(sql);
@@ -61,16 +63,16 @@ cs.setString(6, m.getApellido_p());//
 cs.setString(7, m.getTelefono());//
 cs.setString(8, m.getEstado());//
 cs.setString(9, m.getRfc());//
-System.out.println("este es el nombre de "+m.getNombre());
+cs.setString(10, m.getDireccion());//
+cs.setString(11, m.getImg());//
+
 cs.executeQuery();//usamos executeQuery por que son registros
            
         } catch (Exception e) {
                System.out.println("error procedimiento"+e);
         }
     }
-    public void editar (){
-        
-    }
+    
     public void eliminar (datosGerente m){
           try {
              final String sql="{call BajarEmpleado(?) }";//declaramos una constante que contendra el nombre del procedimiento almacenado

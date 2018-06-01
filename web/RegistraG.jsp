@@ -82,15 +82,20 @@ header{
                     <input class="input" type="text" placeholder="&#128100;  Apellido Materno" required name="apellido_m">
  <input class="input" type="text" placeholder="&#128100;  RFC" required name="rfc">                   
                     <input class="input" type="text" placeholder="&#128100;  Telefono" required name="telefono">
-                      <select name="tipo" class="input">
+ <input class="input" type="text" placeholder="&#128100;  Direccion" required name="direccion">
+ 
+ <label>Foto</label><input class="input" type="file" placeholder="&#128100;  Imagen" required name="imagen">
+ <select name="tipo" class="input">
       <option > Tipo de empleado</option>  
       <option > Cocinero</option>     
       <option > Repartidor</option>   
  
   </select>
                     <input class="input" type="text" placeholder="&#128100;  Usuario" required name="usuario">
+        
                     <input class="input" type="password" placeholder="&#9993;  Contraseña" required name="contrasena">
-<div class="btn__form">
+
+                    <div class="btn__form">
 <input class="btn__submit" type="submit" value="REGISTRAR">
 <input class="btn__reset" type="reset" value="LIMPIAR">	
 </div>

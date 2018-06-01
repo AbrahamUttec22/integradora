@@ -13,6 +13,24 @@ public class datosGerente {
    private String telefono;
    private String estado;
    private String rfc;
+   private String direccion;
+   private String img;
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public String getRfc() {
         return rfc;

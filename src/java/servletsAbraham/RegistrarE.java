@@ -46,7 +46,7 @@ public class RegistrarE extends HttpServlet {
                String mensaje,u;
      datosGerente m= new datosGerente();
      InsertarE ob= new InsertarE();
-     String n,ap,am,te,ti,us,co,rf;
+     String n,ap,am,te,ti,us,co,rf,direc,im;
      n=request.getParameter("nombre");
      ap=request.getParameter("apellido_p");
      am=request.getParameter("apellido_m");
@@ -55,6 +55,8 @@ public class RegistrarE extends HttpServlet {
      us=request.getParameter("usuario");
      co=request.getParameter("contrasena");
      rf=request.getParameter("rfc");
+     direc=request.getParameter("direccion");
+     im=request.getParameter("imagen");
      m.setEstado("ACTIVO");
        m.setNombre(n);
        m.setApellido_p(ap);
@@ -64,6 +66,8 @@ public class RegistrarE extends HttpServlet {
        m.setUsuario(us);
        m.setContrasena(co);
        m.setRfc(rf);
+       m.setDireccion(direc);
+       m.setImg(im);
       if (ob.buscar(us)){
           mensaje="EMPLEADO REGISTRADO";
           ob.insertarE(m);

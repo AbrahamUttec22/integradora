@@ -4,12 +4,22 @@
     Author     : granq
 --%>
 
+<%@page import="java.sql.*"%>
+<%@page import="Conexion.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+  String validar =(String)request.getAttribute("mensaje");
+
+   if(validar!=null)
+       out.println("<script>alert('"+validar+"')" + "</script>");
+
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ENTRETIEMPO</title>
+          <link rel="stylesheet" href="css/abra.css"> 
         <style type="text/css">
 body {
   background-color: lightblue;
@@ -63,5 +73,52 @@ header{
             </table>
         </nav>
              </center>   
+    
+       <form action="http://localhost:8080/SWPR/ActualizarG" method="get">
+           <center>  <input class="input" type="text" placeholder="&#128100;  Ingresa el rfc"  name="rfc" size="30">
+               </center>
+           <div class="btn__form">
+<input class="btn__submit" type="submit" value="Buscar" size="1" name="enviar">
+<input class="btn__submit" type="submit" value="Actualizar" size="1" name="enviar">
+</div>
+		
+    <br><br><br><br>   
+    <center>
+    <table class="tabla">
+       <tr>
+<th>Nombre</th>
+<th>Paterno </th>
+<th>Materno </th>
+<th>RFC</th> 
+<th>Telefono</th> 
+<th>Tipo</th> 
+<th>Usuario</th> 
+<th>Contraseña</th> 
+<th>Direccion</th> 
+<th>Imagen</th> 
+
+
+       </tr>
+<tr class="modo1">
+<td><input type="text" value="${no}" name="nombre" size="15"></td>
+<td><input type="text" value="${ap}" name="ap" size="15"></td>
+<td><input type="text" value="${am}" name="am" size="15"></td>
+<td><input type="text" value="${rfc}" name="rfc2" size="15"></td>
+<td><input type="text" value="${telefono}" name="telefono" size="15"></td>
+
+<td><input type="text" value="${ti}" name="tipo" size="15"></td>
+<td><input type="text" value="${us}" name="usuario" size="15"></td>
+<td><input type="text" value="${co}" name="contrasena" size="15"></td>
+<td><input type="text" value="${direccion}" name="direccion" size="15"></td>
+<td><input type="file" value="${imagen}" name="imagen" size="15"></td>
+
+
+</tr>
+
+
+</center>
+    </table>
+    </form>
+
     </body>
 </html>

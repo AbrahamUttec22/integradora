@@ -72,10 +72,13 @@ header{
             </table>
         </nav>
              </center>   
-    
+    <div class="container">
+		<div class="form__top">
+			<h2> <span></span></h2>
+		</div>	
        <form class="form__reg" action="http://localhost:8080/SWPR/BajaE" method="get">
   <input class="input" type="text" placeholder="&#128100;  Ingresa el rfc" required autofocus name="rfc">
-<div class="btn__form">
+             <div class="btn__form">
 <input class="btn__submit" type="submit" value="ELIMINAR">
 <input class="btn__reset" type="reset" value="LIMPIAR">	
 </div>
