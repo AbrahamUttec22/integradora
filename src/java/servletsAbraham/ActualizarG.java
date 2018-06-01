@@ -52,12 +52,13 @@ public class ActualizarG extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String rfc,nombre,apellido_p,apellido_m,telefono,tipo,usuario,contra,bo,rfc2,direccion,imagen;
+        String im2,rfc,nombre,apellido_p,apellido_m,telefono,tipo,usuario,contra,bo,rfc2,direccion,imagen;
        
          response.setContentType("text/html;charset=UTF-8");
        PrintWriter out= response.getWriter();
        direccion=request.getParameter("direccion");
        imagen=request.getParameter("imagen");
+        im2="imgUsuario/"+imagen;
        nombre=request.getParameter("nombre");
        apellido_p=request.getParameter("ap");
        apellido_m=request.getParameter("am");
@@ -122,7 +123,7 @@ cs.setString(8, contra);//
 cs.setInt(9, id_em);//
 cs.setInt(10, id_us);//
 cs.setString(11, direccion);//
-cs.setString(12, imagen);//
+cs.setString(12, im2);//
 cs.executeQuery();//usamos executeQuery por que son registros
  
  ////////////////////////////////////////////////////////

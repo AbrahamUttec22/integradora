@@ -157,7 +157,7 @@ sql="select * from empleado em inner join sesion se on se.id_usuario=em.id_usuar
            out.println("<td>" + resultado.getString("usuario") + "</td>");
            out.println("<td>" + resultado.getString("contrasena") + "</td>");
            out.println("<td>" + resultado.getString("direccion") + "</td>");
-           out.println("<td>" + resultado.getString("imagen") + "</td>");
+           out.println("<td><img src="+resultado.getString("imagen")+" height=70></img></td>");
             out.println("</tr>");
             }
             
