@@ -55,8 +55,8 @@ header{
         <nav>
             <table >
                 <tr>
-                    <td> <a href="IniciarSesion.jsp">Iniciar Sesion </a></td>
-                    <td> <a href="">Contactanos </a></td>
+                    <td> <a href="Encuesta.jsp">Hacer encuesta </a></td>
+                    
                 </tr>
             </table>
         </nav>
