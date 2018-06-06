@@ -55,7 +55,8 @@ public class Conexion {
         } catch (SQLException ex) {
               System.out.println("excepcion sql: "+ex.getMessage());
         }
+    }  
+  public Connection getConnection(){
+        return this.conexion;
     }
-  
-  
 }
