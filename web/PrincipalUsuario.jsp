@@ -10,6 +10,13 @@
 <%@page import="clases_osr.DatosCliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+  String validar =(String)request.getAttribute("mensaje");
+
+   if(validar!=null)
+       out.println("<script>alert('"+validar+"')" + "</script>");
+
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -61,9 +68,14 @@ header{
         <nav>
             <table>
                 <tr>
+<<<<<<< HEAD
                     <td> <a href="IniciarSesion.jsp">Iniciar Sesion </a></td>
                     <td> <a href="">Contactanos </a></td>
                     <td> <a href="index.jsp">Cerrar Sesion</a></td>
+=======
+                    <td> <a href="InterfazEncuesta.jsp">Hacer encuesta </a></td>
+                    
+>>>>>>> origin/master
                 </tr>
             </table>
         </nav>      

@@ -75,7 +75,7 @@ header{
 		<div class="form__top">
 			<h2>Formulario <span>Registro</span></h2>
 		</div>		
-            <form class="form__reg" action="http://localhost:8080/SWPR/RegistrarE" method="get">
+<form class="form__reg" action="${pageContext.servletContext.contextPath}/RegistrarE" method="post" enctype="multipart/form-data">
                     <input class="input" type="text" placeholder="&#128100;  Nombre" required autofocus name="nombre">
             
                     <input class="input" type="text" placeholder="&#128100;  Apellido Paterno" required name="apellido_p">
