@@ -75,25 +75,25 @@ header{
 		<div class="form__top">
 			<h2>Formulario <span>Registro</span></h2>
 		</div>		
-<form class="form__reg" action="${pageContext.servletContext.contextPath}/RegistrarE" method="post" enctype="multipart/form-data">
-                    <input class="input" type="text" placeholder="&#128100;  Nombre" required autofocus name="nombre">
+            <form class="form__reg" action="RegistrarE" method="post" enctype="multipart/form-data">
+                    <input class="input" type="text" placeholder="&#128100;  Nombre"  autofocus name="nombre">
             
-                    <input class="input" type="text" placeholder="&#128100;  Apellido Paterno" required name="apellido_p">
-                    <input class="input" type="text" placeholder="&#128100;  Apellido Materno" required name="apellido_m">
- <input class="input" type="text" placeholder="&#128100;  RFC" required name="rfc">                   
-                    <input class="input" type="text" placeholder="&#128100;  Telefono" required name="telefono">
- <input class="input" type="text" placeholder="&#128100;  Direccion" required name="direccion">
+                    <input class="input" type="text" placeholder="&#128100;  Apellido Paterno"  name="apellido_p">
+                    <input class="input" type="text" placeholder="&#128100;  Apellido Materno"  name="apellido_m">
+ <input class="input" type="text" placeholder="&#128100;  RFC"  name="rfc">                   
+                    <input class="input" type="text" placeholder="&#128100;  Telefono"  name="telefono">
+ <input class="input" type="text" placeholder="&#128100;  Direccion"  name="direccion">
  
- <label>Foto</label><input class="input" type="file" placeholder="&#128100;  Imagen" required name="imagen">
+ <label>Foto</label><input class="input" type="file" placeholder="&#128100;  Imagen" name="imagen">
  <select name="tipo" class="input">
       <option > Tipo de empleado</option>  
       <option > Cocinero</option>     
       <option > Repartidor</option>   
  
   </select>
-                    <input class="input" type="text" placeholder="&#128100;  Usuario" required name="usuario">
+                    <input class="input" type="text" placeholder="&#128100;  Usuario"  name="usuario">
         
-                    <input class="input" type="password" placeholder="&#9993;  Contraseña" required name="contrasena">
+                    <input class="input" type="password" placeholder="&#9993;  Contraseña"  name="contrasena">
 
                     <div class="btn__form">
 <input class="btn__submit" type="submit" value="REGISTRAR">

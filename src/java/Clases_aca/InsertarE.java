@@ -26,7 +26,24 @@ public class InsertarE {
         }
      return v;
     }
-    
+       public boolean buscar2(String u){
+        boolean v=false;
+        try {
+        final String sql="Select * from empleado where rfc='"+u+"' ";//declaramos una constante para que no se altare la instruccion del procediminto 
+     Conexion conexion= new Conexion();
+     conexion.Conectar();
+     //conexion.Conectar();
+     PreparedStatement sentencia= conexion.getConexion().prepareCall(sql);
+     ResultSet resultado = sentencia.executeQuery(); //resultset resultado obtener los datos de columna correspondientes a un fila
+            while (resultado.next()) { // con un while podremos recorrer las columnas del registro por eso usamos el next()
+            v=true;
+            }
+            return v;
+        } catch (Exception e) {
+            System.out.println("error consulta"+e);
+        }
+     return v;
+    }
     public boolean buscarrf(String u){
         boolean v=false;
         String estado="ACTIVO";
