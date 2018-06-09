@@ -56,7 +56,7 @@ header{
     <body>
         <br><br><br><br><br>
                 
-        <form method="post" action="http://localhost:8080/SWPR/Encuesta">
+        <form method="post" action="Encuesta">
          <table class="tabla">
        <tr>
 

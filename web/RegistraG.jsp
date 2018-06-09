@@ -37,7 +37,7 @@ nav{
     background-image: linear-gradient(top, #FFF, #CCC);/*El estandar por defecto*/
     overflow:hidden;
     padding:50px;
-    width:400px;
+    width:600px;
      margin-top: 100px;
     
 }
@@ -61,12 +61,13 @@ header{
     <body>
     <center>
     <nav>
-            <table >
+      <table WIDTH="500" height="50">
                 <tr>
   <td> <a href="RegistraG.jsp">Registrar </a></td>
   <td> <a href="ActualizarG.jsp">Actualizar </a></td>
   <td> <a href="ConsultasG.jsp">Consulta </a></td>
   <td> <a href="BajasG.jsp">Dar de baja </a></td>
+  <td> <a href="PrincipalG.jsp">Inicio</a></td>
                 </tr>
             </table>
         </nav>

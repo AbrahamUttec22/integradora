@@ -38,7 +38,7 @@ nav{
     background-image: linear-gradient(top, #FFF, #CCC);/*El estandar por defecto*/
     overflow:hidden;
     padding:50px;
-    width:400px;
+     width:600px;
      margin-top: 100px;
     
 }
@@ -62,12 +62,13 @@ header{
     <body>
         <center>
     <nav>
-            <table >
+    <table WIDTH="500" height="50">
                 <tr>
   <td> <a href="RegistraG.jsp">Registrar </a></td>
   <td> <a href="ActualizarG.jsp">Actualizar </a></td>
   <td> <a href="ConsultasG.jsp">Consulta </a></td>
   <td> <a href="BajasG.jsp">Dar de baja </a></td>
+  <td> <a href="PrincipalG.jsp">Inicio</a></td>
                 </tr>
             </table>
         </nav>
@@ -76,7 +77,7 @@ header{
 		<div class="form__top">
 			<h2> <span></span></h2>
 		</div>	
-       <form class="form__reg" action="http://localhost:8080/SWPR/BajaE" method="get">
+       <form class="form__reg" action="BajaE" method="get">
   <input class="input" type="text" placeholder="&#128100;  Ingresa el rfc" required autofocus name="rfc">
              <div class="btn__form">
 <input class="btn__submit" type="submit" value="ELIMINAR">

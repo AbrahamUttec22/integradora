@@ -90,7 +90,7 @@ header{
             mesH=Integer.parseInt(mesHOY);
             diaH=Integer.parseInt(diaHOY);
      ////////////////////////////////////////////////////JALAR FECHA DE REGISTRO
-     String sql="select fecha from pedido_evento where id_usuario='"+datosCliente.datosCliente.id_usuario+"' and estatus='ENTREGADO' ";
+     String sql="select fecha from pedido_evento where id_usuario="+datosCliente.datosCliente.id_usuario+" and estatus='ENTREGADO' ";
      int cont=0;
     
      PreparedStatement sentencia= conexion.getConexion().prepareCall(sql);
@@ -126,7 +126,7 @@ header{
                out.print("<br><br>");out.print("<br><br>");out.print("<br><br>");
                out.print("<a href=PrincipalUsuario.jsp>Regresar</a>");
            }else if (cont<=1){
-               out.print("No tienes encuestas pendientes");
+               out.print("No tienes encuestas pendientes"+datosCliente.datosCliente.id_usuario);
                out.print("<br><br>");
                out.print("<br><br>");out.print("<br><br>");out.print("<br><br>");
                out.print("<a href=PrincipalUsuario.jsp>Regresar</a>");

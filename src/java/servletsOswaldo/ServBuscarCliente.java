@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servletsOswaldo;
 
 import Conexion.Conexion;
-import clases_osr.DatosCliente;
+import datosCliente.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -41,7 +37,7 @@ ResultSet cdr = null;
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) 
         {
-            id=DatosCliente.id_cliente;
+            id=datosCliente.id_usuario;
             String strComando = "SELECT * FROM cliente WHERE id_usuario="+id;
             cdr = sentenciaSQL.executeQuery(strComando);
             out.println("<!DOCTYPE html>");

@@ -7,7 +7,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="Conexion.Conexion"%>
-<%@page import="clases_osr.DatosCliente"%>
+<%@page import="datosCliente.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -81,7 +81,7 @@ header{
         </nav>      
     </center>
     <center>
-            <% int id = DatosCliente.id_cliente; int idT=0;
+            <% int id = datosCliente.id_usuario; int idT=0;
             String img;
             Conexion conecta = new Conexion();
             conecta.Conectar();
@@ -111,7 +111,7 @@ header{
                 out.println("ERROR"+e.getMessage());
             }
         %>
-        <a href="http://localhost:9090/SWPR/ServBuscarClinte"><h5>Actualziar Datos</h5></a>
+        <a href="ServBuscarClinte"><h5>Actualziar Datos</h5></a>
         </center>
     </body>
 </html>

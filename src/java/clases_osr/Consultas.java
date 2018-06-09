@@ -1,5 +1,6 @@
 package clases_osr;
 import Conexion.*;
+import datosCliente.datosCliente;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class Consultas
         rs=pst.executeQuery();
         while(rs.next())
         {
-            DatosCliente.id_cliente=(rs.getInt(1));
+            datosCliente.id_usuario=(rs.getInt(1));
             if(rs.getString("tipo_usuario").equalsIgnoreCase("CLIENTE"))
             {
                 return 1;

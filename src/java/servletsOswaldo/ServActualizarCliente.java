@@ -1,6 +1,6 @@
 package servletsOswaldo;
 import Conexion.Conexion;
-import clases_osr.DatosCliente;
+import datosCliente.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -50,7 +50,7 @@ public class ServActualizarCliente extends HttpServlet
         PrintWriter out = response.getWriter();
         try  
         {           
-            id=DatosCliente.id_cliente;
+            id=datosCliente.id_usuario;
             correo=request.getParameter("correo");
             telefono=request.getParameter("telefono");
             mun=request.getParameter("muni");
