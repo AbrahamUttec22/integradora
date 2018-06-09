@@ -11,7 +11,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-         <style type="text/css">
+         <link rel="stylesheet" href="css/abra.css"> 
+         <style type="text/css" >
+             
 body {
   background-color: lightblue;
   }
@@ -53,34 +55,74 @@ header{
     </head>
     <body>
         <br><br><br><br><br>
+                
         <form method="post" action="http://localhost:8080/SWPR/Encuesta">
-            <label>Pregunta 1</label>
-            <input type="radio" value="R" name="1">
-            <input type="radio" value="B" name="1">
-            <input type="radio" value="E" name="1">
-            <br><br><br>
-             <label>Pregunta 2</label>
-            <input type="radio" value="R" name="2">
-            <input type="radio" value="B" name="2">
-            <input type="radio" value="E" name="2">
-            <br><br><br>
-             <label>Pregunta 3</label>
-            <input type="radio" value="R" name="3">
-            <input type="radio" value="B" name="3">
-            <input type="radio" value="E" name="3">
-            <br><br><br>
-             <label>Pregunta 4</label>
-            <input type="radio" value="R" name="4">
-            <input type="radio" value="B" name="4">
-            <input type="radio" value="E" name="4">
-            <br><br><br>
-             <label>Pregunta 5</label>
-            <input type="radio" value="R" name="5">
-            <input type="radio" value="B" name="5">
-            <input type="radio" value="E" name="5">
-            <br><br><br>
-            <input type="submit" name="enviar"><br><br><br><br><br><br>
+         <table class="tabla">
+       <tr>
+
+<th>   Preguntas </th>
+<th>Regular</th> 
+<th>Bueno</th> 
+<th>Excelente</th> 
+
+       </tr>
+<tr class="modo1">
+    <td>     <label>Pregunta 1</label></td>
+    <td> <input type="radio" value="R" name="1"></td>
+    <td>   <input type="radio" value="B" name="1"></td>
+    <td>
+    <input type="radio" value="E" name="1"></td>
+    
+
+</tr>
+
+<tr class="modo1">
+    <td>     <label>Pregunta 2</label></td>
+    <td> <input type="radio" value="R" name="2"></td>
+    <td>  <input type="radio" value="B" name="2"></td>
+    <td>
+     <input type="radio" value="E" name="2"></td>
+</tr>
+
+<tr class="modo1">
+    <td>     <label>Pregunta 3</label></td>
+    <td> <input type="radio" value="R" name="3"></td>
+    <td>   <input type="radio" value="B" name="3"></td>
+    <td> <input type="radio" value="E" name="3"></td>
+    
+    
+          
+           
+</tr>
+
+<tr class="modo1">
+    <td>     <label>Pregunta 4</label></td>
+    <td>     <input type="radio" value="R" name="4"></td>
+    <td>  <input type="radio" value="B" name="4"></td>
+    <td>
+    <input type="radio" value="E" name="4"></td>
+  
+            
+           
+
+</tr>
+
+<tr class="modo1">
+    <td>     <label>Pregunta 5</label></td>
+    <td> <input type="radio" value="R" name="5"></td>
+    <td>   <input type="radio" value="B" name="5"></td>
+    <td>
+         
+            <input type="radio" value="E" name="5"></td>
+    
+     
+       
+</tr>
+
+</center>
+    </table>
+           <input type="submit" name="enviar"><br><br><br><br><br><br>
             <input type="text" value="${mensaje}">
-        </form>
+         </form>
     </body>
 </html>
