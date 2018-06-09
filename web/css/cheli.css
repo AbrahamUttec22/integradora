@@ -1,0 +1,26 @@
+h1{
+    text-align: center;
+    font-family: cursive;
+    background-color: brown;
+    color: whitesmoke;
+}
+body{
+    background: burlywood;
+}
+
+form{
+    text-align: center;
+}
+
+label{
+    font-size:x-large;
+    text-align: center;
+    color: saddlebrown;
+}
+
+.submits{
+    font-size:x-large;
+    text-align: center;
+    color: brown;
+    background: gainsboro;
+}

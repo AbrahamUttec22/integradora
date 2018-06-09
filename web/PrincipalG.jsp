@@ -53,12 +53,14 @@ header{
     <body>
             <center>
         <nav>
-            <table >
+            <table>
                 <tr>
   <td> <a href="RegistraG.jsp">Registrar </a></td>
   <td> <a href="ActualizarG.jsp">Actualizar </a></td>
   <td> <a href="ConsultasG.jsp">Consulta </a></td>
   <td> <a href="BajasG.jsp">Dar de baja </a></td>
+  <td><a href="MenudelDia.jsp">Subir menú del día</a></td>
+  <td><a href="ConsultarPaquete.jsp">Consultar Paquetes</a></td>
                 </tr>
             </table>
         </nav>
