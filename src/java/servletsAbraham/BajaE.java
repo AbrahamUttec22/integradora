@@ -43,11 +43,11 @@ public class BajaE extends HttpServlet {
        ob.eliminar(m);
        mensaje="Empleado dado de baja";
         request.setAttribute("mensaje",mensaje);
-        request.getRequestDispatcher("BajasG.jsp").forward(request, response);
+        request.getRequestDispatcher("GestionEmpleados.jsp").forward(request, response);
       }else {
         mensaje="Ese empleado no existe";
          request.setAttribute("mensaje",mensaje);
-          request.getRequestDispatcher("BajasG.jsp").forward(request, response);
+          request.getRequestDispatcher("GestionEmpleados.jsp").forward(request, response);
     }
         
     }

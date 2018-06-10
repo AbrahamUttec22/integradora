@@ -18,7 +18,7 @@
 		<div class="form__top">
             <h2>Formulario <span>Registro</span></h2>
 		</div>		
-                <form class="form__reg" action="http://localhost:9090/SWPR/ServRegistrarCliente" method="get">
+                <form class="form__reg" action="ServRegistrarCliente" method="get">
                     <label>Foto</label><input class="input" type="file" placeholder="&#128100;  Imagen" required name="imagen">
                     <label>Nombre</label>
                     <input class="input" type="text"  required autofocus name="nombre">            

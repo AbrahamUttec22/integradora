@@ -6,6 +6,13 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+  String validar =(String)request.getAttribute("mensaje");
+
+   if(validar!=null)
+       out.println("<script>alert('"+validar+"')" + "</script>");
+
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -56,9 +63,8 @@ header{
             <table WIDTH="500" height="50">
                 <tr>
   <td> <a href="RegistraG.jsp">Registrar </a></td>
-  <td> <a href="ActualizarG.jsp">Actualizar </a></td>
-  <td> <a href="ConsultasG.jsp">Consulta </a></td>
-  <td> <a href="BajasG.jsp">Dar de baja </a></td>
+  
+  <td> <a href="ConsultasG.jsp" >Consulta </a></td>
   <td> <a href="PrincipalG.jsp">Inicio</a></td>
                 </tr>
             </table>

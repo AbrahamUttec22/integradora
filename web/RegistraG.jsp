@@ -18,6 +18,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Entretiempo</title>
         <link rel="stylesheet" href="css/abra.css"> 
+        
   <style type="text/css">
 body {
   background-color: lightblue;
@@ -64,9 +65,8 @@ header{
       <table WIDTH="500" height="50">
                 <tr>
   <td> <a href="RegistraG.jsp">Registrar </a></td>
-  <td> <a href="ActualizarG.jsp">Actualizar </a></td>
   <td> <a href="ConsultasG.jsp">Consulta </a></td>
-  <td> <a href="BajasG.jsp">Dar de baja </a></td>
+
   <td> <a href="PrincipalG.jsp">Inicio</a></td>
                 </tr>
             </table>

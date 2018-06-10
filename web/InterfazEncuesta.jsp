@@ -90,7 +90,7 @@ header{
             mesH=Integer.parseInt(mesHOY);
             diaH=Integer.parseInt(diaHOY);
      ////////////////////////////////////////////////////JALAR FECHA DE REGISTRO
-     String sql="select fecha from pedido_evento where id_usuario="+datosCliente.datosCliente.id_usuario+" and estatus='ENTREGADO' ";
+     String sql="select fecha from pedido_evento where id_usuario='"+datosCliente.datosCliente.id_usuario+"' and estatus='ENTREGADO' ";
      int cont=0;
     
      PreparedStatement sentencia= conexion.getConexion().prepareCall(sql);

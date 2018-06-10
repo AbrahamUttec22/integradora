@@ -44,22 +44,7 @@ public class RegistrarE extends HttpServlet {
         super();
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegistrarE</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegistrarE at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+ 
 
 
     @Override
@@ -181,7 +166,7 @@ public class RegistrarE extends HttpServlet {
           if (ob.buscar2(rf)){
               mensaje="Ese empleado ya esta registrado";
                 request.setAttribute("mensaje",mensaje);////+fi
-                request.getRequestDispatcher("RegistraG.jsp").forward(request, response);
+                request.getRequestDispatcher("GestionEmpleados.jsp").forward(request, response);
 
           }else{
                
@@ -212,10 +197,8 @@ public class RegistrarE extends HttpServlet {
        out = new FileOutputStream(new File(path + File.separator
                 + fileName));
         filecontent = filePart.getInputStream();
-
         int read = 0;
         final byte[] bytes = new byte[1024];
-
         while ((read = filecontent.read(bytes)) != -1) {
             out.write(bytes, 0, read);
         }
@@ -224,25 +207,25 @@ public class RegistrarE extends HttpServlet {
 //                new Object[]{fileName, path});
          im2="imgUsuario/"+fileName;
                   m.setImg(im2);
-    } catch (FileNotFoundException fne) {
-        writer.println("You either did not specify a file to upload or are "
-                + "trying to upload a file to a protected or nonexistent "
-                + "location.");
-        writer.println("<br/> ERROR: " + fne.getMessage());
-
-        LOGGER.log(Level.SEVERE, "Problems during file upload. Error: {0}", 
-                new Object[]{fne.getMessage()});
-    } finally {
-        if (out != null) {
-            out.close();
-        }
-        if (filecontent != null) {
-            filecontent.close();
-        }
-        if (writer != null) {
-            writer.close();
-        }
-    }
+    } catch (FileNotFoundException fne) {}
+//        writer.println("You either did not specify a file to upload or are "
+//                + "trying to upload a file to a protected or nonexistent "
+//                + "location.");
+//        writer.println("<br/> ERROR: " + fne.getMessage());
+//
+//        LOGGER.log(Level.SEVERE, "Problems during file upload. Error: {0}", 
+//                new Object[]{fne.getMessage()});
+//    } finally {
+//        if (out != null) {
+//            out.close();
+//        }
+//        if (filecontent != null) {
+//            filecontent.close();
+//        }
+//        if (writer != null) {
+//            writer.close();
+//        }
+//    }
 
 ///////////////////////////////////////////////////////////////////////////////
             ob.insertarE(m);
@@ -251,12 +234,13 @@ public class RegistrarE extends HttpServlet {
           }
           mensaje="EMPLEADO REGISTRADO";
              request.setAttribute("mensaje",mensaje);////+fileName+contentType+size);
-               request.getRequestDispatcher("RegistraG.jsp").forward(request, response);
+               request.getRequestDispatcher("GestionEmpleados.jsp").forward(request, response);
                
+              // response.sendRedirect("GestionEmpleados.jsp");
       }else{
              mensaje="Usuario Repetido";
            request.setAttribute("mensaje",mensaje);
-           request.getRequestDispatcher("RegistraG.jsp").forward(request, response);
+           request.getRequestDispatcher("GestionEmpleados.jsp").forward(request, response);
       
       }
       

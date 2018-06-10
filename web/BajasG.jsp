@@ -4,6 +4,8 @@
     Author     : granq
 --%>
 
+<%@page import="java.sql.*"%>
+<%@page import="Conexion.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -61,28 +63,55 @@ header{
     </head>
     <body>
         <center>
-    <nav>
-    <table WIDTH="500" height="50">
-                <tr>
-  <td> <a href="RegistraG.jsp">Registrar </a></td>
-  <td> <a href="ActualizarG.jsp">Actualizar </a></td>
-  <td> <a href="ConsultasG.jsp">Consulta </a></td>
-  <td> <a href="BajasG.jsp">Dar de baja </a></td>
-  <td> <a href="PrincipalG.jsp">Inicio</a></td>
-                </tr>
-            </table>
-        </nav>
-             </center>   
-    <div class="container">
-		<div class="form__top">
-			<h2> <span></span></h2>
-		</div>	
-       <form class="form__reg" action="BajaE" method="get">
-  <input class="input" type="text" placeholder="&#128100;  Ingresa el rfc" required autofocus name="rfc">
-             <div class="btn__form">
-<input class="btn__submit" type="submit" value="ELIMINAR">
-<input class="btn__reset" type="reset" value="LIMPIAR">	
+    
+            <br><br><br><br>    
+    <table class="tabla">
+       <tr>
+<th>Nombre</th>
+<th>RFC </th>
+<th>IMAGEN </th>
+
+
+       <form  action="BajaE" method="get">
+              <%
+ 
+  try {
+      String rfc=request.getParameter("rfc");
+  String sql="select * from empleado em inner join sesion se on se.id_usuario=em.id_usuario where em.rfc='"+rfc+"';";
+ Conexion conexion= new Conexion();
+     conexion.Conectar();
+     //conexion.Conectar();
+     PreparedStatement sentencia= conexion.getConexion().prepareCall(sql);
+     ResultSet resultado = sentencia.executeQuery(); //resultset resultado obtener los datos de columna correspondientes a un fila
+            while (resultado.next()) { // con un while podremos recorrer las columnas del registro por eso usamos el next()
+       String nom=resultado.getString("nombre");
+       String rf= resultado.getString("rfc"); 
+       String im= resultado.getString("imagen");
+ out.println("<tr class=modo1>");
+ out.println("<td>" + resultado.getString("nombre") + "</td>");
+ out.println("<td>" + resultado.getString("rfc") + "</td>");
+ out.println("<td><img src="+resultado.getString("imagen")+" height=70></img></td>");
+          out.println("</tr>");
+       
+   %>
+  
+   <input class="input" type="hidden" name="rfc" value="<%=rfc%>">
+   
+      <%}
+   } catch (Exception e) {
+       }
+   %>
+        
+  
+ 
+</table>
+   <div class="btn__form">
+        <input class="btn__submit" type="submit" value="ELIMINAR" name="enviar">
 </div>
-		</form>
+
+   </form>
+   <br><br><br><br>
+   
+     </center> 
     </body>
 </html>

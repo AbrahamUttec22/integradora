@@ -56,14 +56,14 @@ header{
   </style>
     </head>
     <body>
+        
         <center>
+          
     <nav>
            <table WIDTH="500" height="50">
                 <tr>
   <td> <a href="RegistraG.jsp">Registrar </a></td>
-  <td> <a href="ActualizarG.jsp">Actualizar </a></td>
   <td> <a href="ConsultasG.jsp">Consulta </a></td>
-  <td> <a href="BajasG.jsp">Dar de baja </a></td>
   <td> <a href="PrincipalG.jsp">Inicio</a></td>
                 </tr>
             </table>
@@ -71,11 +71,12 @@ header{
              </center>   
   
        <form action="ConsultasG.jsp" method="post">
-           <center>  <input class="input" type="text" placeholder="&#128100;  Ingresa el rfc"  name="rfc" size="30">
-               <select name="tipo" class="input">
+           <center>  <input class="input" type="text" placeholder="&#128100;  Ingresa el rfc"  name="rfc" size="30" >
+               <select name="tipo" class="input" >
                <option> Elige</option>
                <option> Cocinero</option>
                <option> Repartidor</option> 
+               <option> Eliminados</option> 
                <option> Todos</option>  
            </select>  
                
@@ -100,25 +101,33 @@ header{
 <th>Contraseña</th> 
 <th>Direccion</th> 
 <th>Imagen</th> 
+<th>Actualizar</th> 
+<th>Eliminar</th> 
        </tr>
 <tr class="modo1">
-    <% 
-        /**
-         * while(rs.next()) {
-		//out.println("<td>" + rs.getString("Nombres") + "</td>");
-	()} // end while
-         */
-        try {
-             out.println("<tr class=modo1>");
-            
-            out.println("</tr>");
-            String filtro="";
-            String validar="";
-            filtro=request.getParameter("tipo");
-            String filtro2="";
-            filtro2=request.getParameter("rfc");
-           String sql="";
-           if(filtro2.equals("")){
+ <% 
+
+try {
+    
+   out.println("<tr class=modo1>");
+   out.println("</tr>");
+   String filtro="";
+   String validar="";
+   String filtro2="";
+   String sql="";
+   if (request.getParameter("tipo")!=null){
+      filtro=request.getParameter("tipo"); 
+   }else {
+        sql="select * from empleado em inner join sesion se on se.id_usuario=em.id_usuario and em.estado='ACTIVO';";
+       
+   }
+   if (request.getParameter("rfc")!=null){
+       filtro2=request.getParameter("rfc");
+    
+   }
+  
+  
+   if(filtro2.equals("") && filtro2!=null){
                validar="nada";
            }else{
                validar="algo";
@@ -126,19 +135,23 @@ header{
            
            
            if (validar.equals("algo")){
-sql="select * from empleado em inner join sesion se on se.id_usuario=em.id_usuario where em.rfc='"+filtro2+"';";
+         sql="select * from empleado em inner join sesion se on se.id_usuario=em.id_usuario where em.rfc='"+filtro2+"' and em.estado='ACTIVO';";
                    
            }else{
                  
                if (filtro.equals("Todos")){
-                sql="select * from empleado em inner join sesion se on se.id_usuario=em.id_usuario;";
+                sql="select * from empleado em inner join sesion se on se.id_usuario=em.id_usuario and em.estado='ACTIVO';";
     
             }else if (filtro.equals("Cocinero")){
-                sql="select * from empleado em join sesion se on se.id_usuario=em.id_usuario where se.tipo_usuario='Cocinero';";
+                sql="select * from empleado em join sesion se on se.id_usuario=em.id_usuario where se.tipo_usuario='Cocinero' and em.estado='ACTIVO';";
             }else if (filtro.equals("Repartidor")){
-        sql="select * from empleado em join sesion se on se.id_usuario=em.id_usuario where se.tipo_usuario='Repartidor';";
+        sql="select * from empleado em join sesion se on se.id_usuario=em.id_usuario where se.tipo_usuario='Repartidor' and em.estado='ACTIVO';";
+            }else if (filtro.equals("Eliminados")){
+     sql="select * from empleado em inner join sesion se on se.id_usuario=em.id_usuario and em.estado='INACTIVO';";            
             }
      }
+        
+          
           
  
  Conexion conexion= new Conexion();
@@ -147,8 +160,9 @@ sql="select * from empleado em inner join sesion se on se.id_usuario=em.id_usuar
      PreparedStatement sentencia= conexion.getConexion().prepareCall(sql);
      ResultSet resultado = sentencia.executeQuery(); //resultset resultado obtener los datos de columna correspondientes a un fila
             while (resultado.next()) { // con un while podremos recorrer las columnas del registro por eso usamos el next()
-            out.println("<tr class=modo1>");
-            out.println("<td>" + resultado.getString("nombre") + "</td>");
+           
+           out.println("<tr class=modo1>");
+           out.println("<td>" + resultado.getString("nombre") + "</td>");
            out.println("<td>" + resultado.getString("apellido_p") + "</td>");
            out.println("<td>" + resultado.getString("apellido_m") + "</td>");
            out.println("<td>" + resultado.getString("rfc") + "</td>");
@@ -159,11 +173,27 @@ sql="select * from empleado em inner join sesion se on se.id_usuario=em.id_usuar
            out.println("<td>" + resultado.getString("contrasena") + "</td>");
            out.println("<td>" + resultado.getString("direccion") + "</td>");
            out.println("<td><img src="+resultado.getString("imagen")+" height=70></img></td>");
-            out.println("</tr>");
+      
+           out.println("<td>"
+     + "<form action='ActualizarG.jsp' method='post'>"
++ "<input type='hidden' value='"+resultado.getString("id_usuario")+"' name='no'></a>"
+        + "<input type='submit' value='Actualizar'></td></form>");
+ if (resultado.getString("estado").equalsIgnoreCase("ACTIVO")){
+        out.println("<td>"
+     + "<form action='BajasG.jsp' method='post'>"
++ "<input type='hidden' value='"+resultado.getString("rfc")+"' name='rfc'></a>"
+        + "<input type='submit' value='Eliminar'></td></form>");
+ }else {
+       out.println("<td></td>");
+ }
+        
+ 
+ 
+           out.println("</tr>");
             }
             
         } catch (Exception e) {
-            System.out.println("error consulta"+e);
+            System.out.println("error consulta"+request.getParameter("rfc"));
         }
      
     %>
