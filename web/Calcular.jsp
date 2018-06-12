@@ -64,10 +64,10 @@ header{
     <nav>
             <table width="100%">
                 <tr>
-  <td> <a href="RegistrarP.jsp">Gestionar </a></td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-  <td> <a href="http://localhost:8080/SWPR/SerDePla">Mostrar Detalle </a></td> &nbsp;&nbsp;&nbsp;
+
+  <td> <a href="SerDePla">Mostrar Detalle </a></td> &nbsp;&nbsp;&nbsp;
   <td> <a href="ConsultasP.jsp">Calcular Costo </a></td>&nbsp;&nbsp;&nbsp;             
-                  <td> <a href="IniciarSesion.jsp">Inicio </a></td>&nbsp;&nbsp;&nbsp;
+                  <td> <a href="PrincipalUsuario.jsp">Inicio </a></td>&nbsp;&nbsp;&nbsp;
                 </tr>
             </table>
        
@@ -78,7 +78,7 @@ header{
 		<div class="form__top">
 			<h2>Calcular <span>Pedido </span></h2>
 		</div>		
-            <form class="form__reg" action="http://localhost:8080/SWPR/SerCalPl" method="get">
+            <form class="form__reg" action="SerCalPl" method="get">
                 
                 <input class="input" type="text" placeholder="id_usuario" required autofocus name="id_usuario" value="${resp2}"><br><br>
                 <input class="input" type="date" placeholder="fecha" required autofocus name="fecha" value="${resp3}"><br><br>

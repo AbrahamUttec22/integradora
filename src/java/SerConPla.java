@@ -113,7 +113,7 @@ public class SerConPla extends HttpServlet {
             out.println("</tr>");
             }
             out.println("</table></br>");
-            out.println("<a href=Platillo.jsp>Regresar</a></body></html>");
+            out.println("<a href=PrincipalG.jsp>Regresar</a></body></html>");
            
             
         } catch (SQLException e) {

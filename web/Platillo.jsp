@@ -55,10 +55,10 @@ header{
         <nav>
             <table width="100%" >
                 <tr>
-  <td> <a href="RegistrarP.jsp">Gestionar </a></td> &nbsp;&nbsp;&nbsp;
-  <td> <a href="http://localhost:8080/SWPR/SerDePla">Mostrar Detalle </a></td> &nbsp;&nbsp;&nbsp;
+ 
+  <td> <a href="SerDePla">Mostrar Detalle </a></td> &nbsp;&nbsp;&nbsp;
   <td> <a href="Calcular.jsp">Calcular Costo </a></td>&nbsp;&nbsp;&nbsp;
-   <td> <a href="IniciarSesion.jsp">Inicio </a></td>&nbsp;&nbsp;&nbsp;
+   <td> <a href="PrincipalUsuario.jsp">Inicio </a></td>&nbsp;&nbsp;&nbsp;
                 </tr>
             </table>
         </nav>

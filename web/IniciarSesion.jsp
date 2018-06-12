@@ -4,7 +4,7 @@
     Author     : granq
 --%>
 
-<%@page import="clases_osr.DatosCliente"%>
+<%@page import="datosCliente.datosCliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

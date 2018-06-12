@@ -68,14 +68,12 @@ header{
         <nav>
             <table>
                 <tr>
-<<<<<<< HEAD
-                    <td> <a href="IniciarSesion.jsp">Iniciar Sesion </a></td>
-                    <td> <a href="">Contactanos </a></td>
-                    <td> <a href="index.jsp">Cerrar Sesion</a></td>
-=======
+
+                    <td> <a href="Platillo.jsp">Platillos</a></td>
                     <td> <a href="InterfazEncuesta.jsp">Hacer encuesta </a></td>
+                    <td> <a href="index.jsp">Cerrar Sesion</a></td>
                     
->>>>>>> origin/master
+                    
                 </tr>
             </table>
         </nav>      
@@ -92,7 +90,7 @@ header{
             ResultSet rs=sentenciaSQL.executeQuery(strComando);
             while(rs.next())
             {
-                out.println("<img src=imgUsuario/"+rs.getString("imagen")+" style='width: 10%;' >");
+                out.println("<img src="+rs.getString("imagen")+" style='width: 10%;' >");
                 out.println("<h5>CLIENTE:&nbsp;&nbsp;&nbsp;&nbsp;"+rs.getString("Nombre")+" "+rs.getString("apellido_p")+"</h5>");
                 idT=rs.getInt("id_tarjeta");
             }

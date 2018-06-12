@@ -63,10 +63,9 @@ header{
     <nav>
             <table width="100%">
                 <tr>
-  <td> <a href="RegistrarP.jsp">Gestionar </a></td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-  <td> <a href="http://localhost:8080/SWPR/SerDePla">Mostrar Detalle </a></td> &nbsp;&nbsp;&nbsp;
-  <td> <a href="Calcular.jsp">Calcular Costo </a></td>&nbsp;&nbsp;&nbsp;             
-                  <td> <a href="IniciarSesion.jsp">Inicio </a></td>&nbsp;&nbsp;&nbsp;
+  
+        
+                  <td> <a href="PrincipalG.jsp">Inicio </a></td>&nbsp;&nbsp;&nbsp;
                 </tr>
             </table>
         
@@ -77,7 +76,7 @@ header{
 		<div class="form__top">
 			<h2>Insertar <span>Platillo </span></h2>
 		</div>		
-            <form class="form__reg" action="http://localhost:8080/SWPR/SerGesPl" method="get">
+            <form class="form__reg" action="SerGesPl" method="get">
                 <input class="input" type="text" placeholder="platillo" required autofocus name="nombre" value=""><br><br>
             
                         <select name="tipo" class="input" value="${resp2}">
@@ -105,7 +104,7 @@ header{
  
 		</form>
                               	<div class="form__top">
-                                    <h2><Span><a href="http://localhost:8080/SWPR/SerConPla"> Ver Registros de platillos <a></span></h2><br><br>
+                                    <h2><Span><a href="SerConPla"> Ver Registros de platillos <a></span></h2><br><br>
 		</div>
                               
  
