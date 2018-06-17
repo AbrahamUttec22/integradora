@@ -10,7 +10,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/login.css">
-        <script> alert("${resp}"); </script>
+   
+        <script> 
+      
+           alert("${resp}"); 
+      
+    
+        </script>
         <title>ENTRETIEMPO</title>
    <style type="text/css">
 body {

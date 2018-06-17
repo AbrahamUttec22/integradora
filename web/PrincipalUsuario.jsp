@@ -71,6 +71,7 @@ header{
 
                     <td> <a href="Platillo.jsp">Platillos</a></td>
                     <td> <a href="InterfazEncuesta.jsp">Hacer encuesta </a></td>
+<td> <a href="Reserva.jsp">Reservar Mesa </a></td>
                     <td> <a href="index.jsp">Cerrar Sesion</a></td>
                     
                     

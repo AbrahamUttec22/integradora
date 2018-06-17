@@ -203,5 +203,7 @@ try {
 
 </center>
     </table>
+    <br><br><br><br><br>
+    <img src="WhatsApp Image 2018-06-13 at 18.24.36.jpeg">
     </body>
 </html>

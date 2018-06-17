@@ -57,9 +57,10 @@ header{
             <table>
                 <tr>
   <td> <a href="GestionEmpleados.jsp">Gestionar Empleados </a></td>
-    <td><a href="RegistrarP.jsp">Gestionar Platillos</a></td>
+  <td><a href="RegistrarP.jsp">Gestionar Platillos</a></td>
   <td><a href="MenudelDia.jsp">Subir menú del día</a></td>
   <td><a href="ConsultarPaquete.jsp">Consultar Paquetes</a></td>
+  <td><a href="Mesa.jsp">Mesas</a></td>
   <td><a href="index.jsp">Cerrar Sesion</a></td>
  
                 </tr>

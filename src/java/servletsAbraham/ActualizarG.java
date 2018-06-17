@@ -225,8 +225,8 @@ public class ActualizarG extends HttpServlet {
 
 CallableStatement cs=conecta.getConexion().prepareCall(sql);
 cs.setString(1, nombre);//s
-cs.setString(2, apellido_p);//
-cs.setString(3, apellido_m);//
+cs.setString(2, apellido_m);//
+cs.setString(3, apellido_p);//
 cs.setString(4, rfc2);//
 cs.setString(5, telefono);//
 cs.setString(6, tipo);//
