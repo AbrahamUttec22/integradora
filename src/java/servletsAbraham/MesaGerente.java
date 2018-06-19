@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "MesaGerente", urlPatterns = {"/MesaGerente"})
 public class MesaGerente extends HttpServlet {
-
+    int divi=0;
+ String disponible="",ocupadas="";
    String simandaOcupado="si";
     ResultSet cdr=null;
     Statement sentenciaSQL=null;
@@ -58,6 +59,16 @@ public class MesaGerente extends HttpServlet {
       PrintWriter out= response.getWriter();
         try {
             String ti=request.getParameter("tipo");
+            if (ti.equals("chica")){
+                disponible="chicasDisponibles";
+    ocupadas="chicasOcupadas";
+            }else if (ti.equals("mediana")){
+                disponible="medianasDisponibles";
+    ocupadas="medianasOcupadas";
+            }else if (ti.equals("grande")){
+                   disponible="grandesDisponibles";
+    ocupadas="grandesOcupadas";
+            }
             out.print("<table>");
             verMesaD(ti,out);
             verMesaO(ti,out);
@@ -74,19 +85,32 @@ public class MesaGerente extends HttpServlet {
  
       try {
  final String sql="{call ConsultaMesaGerenteD(?) }";//declaramos una constante que contendra el nombre del procedimiento almacenado
-int cont =0;
+int cont =0,bandera=0;
 CallableStatement cs=conecta.getConexion().prepareCall(sql);
         cs.setString(1, ti);
 cdr=cs.executeQuery();//usamos executeQuery por que son registros
 out.print("<tr>");
         while(cdr.next()){
-         cont++;  
-             out.print("<td>");
-  out.print("<input  style='background-color: #7FFF00'   type='submit' value="+cdr.getString(1)+"> <br>");
-  //out.print(cdr.getString(1));
+          if (cont>=5){
+                  out.print("<td>");
+  out.print("<input  style='background-color: #7FFF00'  type='submit'  id='mesa"+cont+"' class="+disponible+" value="+cdr.getString(1)+" onclick='proceso"+cont+"();' > <br>");
    out.print("</td>");
-        }
-        out.print("</tr>");
+              bandera++;
+          }
+          if (bandera==0){
+                out.print("<td>");
+  out.print("<input  style='background-color: #7FFF00'   type='submit'  id='mesa"+cont+"' class="+disponible+" value="+cdr.getString(1)+" onclick='proceso"+cont+"();' > <br>");
+   out.print("</td>");
+          }
+       
+         if (cont==4){
+              out.print("</tr>");
+         }
+                 
+   cont++; 
+   divi++;
+   }//while
+       
      
         } catch (Exception e) {
                System.out.println("error procedimiento"+e);
@@ -97,20 +121,43 @@ out.print("<tr>");
  
       try {
  final String sql="{call ConsultaMesaGerenteO(?) }";//declaramos una constante que contendra el nombre del procedimiento almacenado
-int cont =0;
+int cont =0,cont2=10,bandera=0;
 CallableStatement cs=conecta.getConexion().prepareCall(sql);
  cs.setString(1, ti);
 cdr=cs.executeQuery();//usamos executeQuery por que son registros
 out.print("<tr>");
         while(cdr.next()){
-         cont++;  
-             out.print("<td>");
-  out.print("<input  style='background-color: #FF0000'   type='submit' value="+cdr.getString(1)+"> <br>");
+       if (cont==5){
+out.print("<tr>");
+  } 
+  out.print("<td>");
+  out.print("<input  type='submit' class="+ocupadas+" id='mesa"+cont2+"' value="+cdr.getString(1)+" onclick='proceso"+cont2+"();'> <br>");
   //out.print(cdr.getString(1));
    out.print("</td>");
+
+  
+//  if (divi==1 && cont==4){
+//        out.print("<tr>");
+//  } 
+//  if (divi==0 && cont==5){
+//      out.print("<tr>");
+//  }
+//  if (divi==2 && cont==3){
+//      out.print("<tr>");
+//  }
+//  if (divi==3 && cont==2){
+//      out.print("<tr>");
+//  }
+
+   cont++;  
+   cont2++;
+   
+         
         }
         out.print("</tr>");
+        out.print("</tr>");
      
+  
         } catch (Exception e) {
                System.out.println("error procedimiento"+e);
         }

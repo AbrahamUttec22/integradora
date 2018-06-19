@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "ConsultaMesa", urlPatterns = {"/ConsultaMesa"})
 public class ConsultaMesa extends HttpServlet {
+         String disponible="",ocupadas="";
     String simandaOcupado="si";
     ResultSet cdr=null;
     Statement sentenciaSQL=null;
@@ -57,7 +58,7 @@ public class ConsultaMesa extends HttpServlet {
       PrintWriter out= response.getWriter();
           String fecha="",ho="",hora="",ho1="",fe="",dia="",mes="",ano="";
           int comensal=0;
-       
+  
         
         try {
 ////////////////////////////////////////////////////////////////////////////7            
@@ -70,6 +71,27 @@ public class ConsultaMesa extends HttpServlet {
             mes=fe.substring(5,7);
             ano=fe.substring(0,4);
             fecha=dia+"/"+mes+"/"+ano;
+            /////////////////////////////////////////////
+//            
+//              <input type="button" class="chicasDisponibles">
+//    <input type="button" class="chicasOcupadas">
+//    <input type="button" class="medianasDisponibles">
+//    <input type="button" class="medianasOcupadas">
+//    <input type="button" class="grandesDisponibles">
+//    <input type="button" class="grandesOcupadas">
+
+if (comensal>=1 && comensal <=2){
+    disponible="chicasDisponibles";
+    ocupadas="chicasOcupadas";
+}else if (comensal>=3 && comensal <=4){
+     disponible="medianasDisponibles";
+    ocupadas="medianasOcupadas";
+}else if (comensal>=5){
+     disponible="grandesDisponibles";
+    ocupadas="grandesOcupadas";
+}
+
+
 ///////////////////////////////////////////////////////////////////////////
 //comensal,hora,fecha
 simandaOcupado="si";
@@ -91,7 +113,7 @@ out.print("</table>");
  
       try {
  final String sql="{call ConsultaMesaDisponible(?,?,?) }";//declaramos una constante que contendra el nombre del procedimiento almacenado
-int cont =0;
+int cont =0,bandera=0;
 CallableStatement cs=conecta.getConexion().prepareCall(sql);
         
 cs.setInt(1,comensal);//s
@@ -100,13 +122,23 @@ cs.setString(3,fecha);//
 cdr=cs.executeQuery();//usamos executeQuery por que son registros
 out.print("<tr>");
         while(cdr.next()){
-         cont++;  
-             out.print("<td>");
-  out.print("<input  style='background-color: #7FFF00'   type='submit' value="+cdr.getString(1)+"> <br>");
-  //out.print(cdr.getString(1));
+         if (cont>=5){
+              out.print("<td>");
+   out.print("<input style='background-color: #7FFF00'   type='button'  class="+disponible+"  value="+cdr.getString(1)+"> <br>");
    out.print("</td>");
-        }
+   bandera++;
+         }
+         if (bandera==0){
+              out.print("<td>");
+   out.print("<input style='background-color: #7FFF00'   type='button'  class="+disponible+"  value="+cdr.getString(1)+"> <br>");
+   out.print("</td>");
+         }
+  if (cont==4){
         out.print("</tr>");
+  }
+            cont++;  
+        }
+      
  if (cont==0){
      respaldo(comensal,out,fecha,hora);
  }       
@@ -125,10 +157,10 @@ cs.setInt(1,comensal);//s
 cs.setString(2,hora);//
 cs.setString(3,fecha);//
 cdr=cs.executeQuery();//usamos executeQuery por que son registros
-out.print("<tr>");
+
         while(cdr.next()){
              out.print("<td>");
-  out.print("<input  style='background-color: #FF0000'   type='submit' value="+cdr.getString(1)+"> <br>");
+  out.print("<input  style='background-color: #FF0000'   type='button' disabled=''  class="+ocupadas+"  value="+cdr.getString(1)+"> <br>");
   //out.print(cdr.getString(1));
    out.print("</td>");
         }
@@ -163,7 +195,7 @@ out.print("<tr>");
        }
            
          out.print("<td>");
-  out.print("<input  style='background-color: #7FFF00'   type='submit' value="+cdr.getString(1)+"> <br>");
+  out.print("<input  style='background-color: #7FFF00'   type='button' class="+disponible+" value="+cdr.getString(1)+"> <br>");
   //out.print(cdr.getString(1));
    out.print("</td>");
      
@@ -172,7 +204,7 @@ out.print("<tr>");
          
        if (bandera==0){
    out.print("<td>");
-   out.print("<input  style='background-color: #7FFF00'   type='submit' value="+cdr.getString(1)+"> <br>");
+   out.print("<input  style='background-color: #7FFF00'   type='button' class="+disponible+"  value="+cdr.getString(1)+"> <br>");
   //out.print(cdr.getString(1));
    out.print("</td>"); 
        }
@@ -195,13 +227,7 @@ out.print("<tr>");
  //////////////////////////////////////////////////////////////////////// 
   
   
-  
-  
-  
-  
-  
-  
-  
+
   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
