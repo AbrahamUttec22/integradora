@@ -1,0 +1,22 @@
+h1{
+    text-align: center;
+    font-family: cursive;
+    background-color: lightblue;
+}
+body{
+    background: #83aec0;
+}
+
+table{
+    font-size:x-large;
+    text-align: center;
+    color: gainsboro;
+}
+.button{
+    width: 60%;
+	background-color: #31B1E5;
+	color: white;
+        display: flex;
+	justify-content: space-around;
+	margin-top: 1rem;
+}
