@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script type="text/javascript" src="jsAbraham/mesas.js"> </script>
+        <script type="text/javascript" src="jsAbraham/reservar_mesa.js"> </script>
         <style>
  .chicasDisponibles{
   background-image:url(img/chicasD.jpeg);
@@ -65,7 +65,7 @@
         <br><br>
         <a href="PrincipalUsuario.jsp">Regresar</a>
         <div>
-            <br><br><br><br><br><br><br><br><br>
+            <br><br><br>
        
             Fecha: <input type="date" id="fecha" >&nbsp;
                 Hora:  <input type="time" id="hora" >&nbsp;
@@ -73,8 +73,12 @@
                 <input type="submit" id="enviar" value="enviar" onclick="iniciar();"><br><br><br>
            
         </div>
-        <br><br><br>
+        <br>
         <div id="mesa">
+     
+        </div>
+        <br><br>
+        <div id="cotizacion">
      
         </div>
      

@@ -125,6 +125,7 @@ out.print("<tr>");
          if (cont>=5){
               out.print("<td>");
    out.print("<input style='background-color: #7FFF00'   type='button'  class="+disponible+"  value="+cdr.getString(1)+"> <br>");
+   
    out.print("</td>");
    bandera++;
          }
