@@ -4,12 +4,43 @@
     Author     : granq
 --%>
 
+<%@page import="java.util.Calendar"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+     <%
+    Calendar calendario = Calendar.getInstance();
+  int hora =calendario.get(Calendar.HOUR_OF_DAY);
+  int minutos = calendario.get(Calendar.MINUTE);
+ int an= calendario.get(Calendar.YEAR);
+  int me= calendario.get(Calendar.MONTH)+1;
+   int di= calendario.get(Calendar.DAY_OF_MONTH);
+  String actual=String.valueOf(hora+2);
+  String actua=String.valueOf(minutos);
+ String ano=String.valueOf(an);
+ String mes=String.valueOf(me);
+ String dia=String.valueOf(di);
+  String hora_actual="";
+  String fecha="";
+            %>
+            
+           <%
+            if(minutos<=9){
+      actua="0"+actua;
+           }
+            if (me<10){
+                mes="0"+mes;
+            }
+            fecha=ano+"-"+mes+"-"+dia;
+           %>
+                   
+            
+            
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script type="text/javascript" src="jsAbraham/reservar_mesa.js"> </script>
+        <script type="text/javascript" src="jsAbraham/r.js"> </script>
         <style>
  .chicasDisponibles{
   background-image:url(img/chicasD.jpeg);
@@ -67,21 +98,19 @@
         <div>
             <br><br><br>
        
-            Fecha: <input type="date" id="fecha" >&nbsp;
-                Hora:  <input type="time" id="hora" >&nbsp;
-                Numero de personas:  <input type="number" min="1" id="comensal" name="hora">&nbsp;
+            Fecha: <input type="date" id="fecha" value="<%=fecha%>">&nbsp;
+  Hora:  <input type="time" id="hora" min="13:00:00" value="<%=hora_actual=actual+":"+actua%>">&nbsp;
+  Numero de personas:  <input type="number" min="1" id="comensal" value="2" name="hora" >&nbsp;
                 <input type="submit" id="enviar" value="enviar" onclick="iniciar();"><br><br><br>
            
         </div>
-        <br>
+        
+  <br>
         <div id="mesa">
-     
         </div>
-        <br><br>
+       
         <div id="cotizacion">
-     
         </div>
-     
     </center>
 
     </body>
