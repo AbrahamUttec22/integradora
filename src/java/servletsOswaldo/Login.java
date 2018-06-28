@@ -37,7 +37,7 @@ public class Login extends HttpServlet {
             response.sendRedirect("Repartidor.jsp");
             break;
             case 4:
-            response.sendRedirect("PrincipalG.jsp");
+           response.sendRedirect("MenuGerente.jsp");
             break;
             case 0:
             request.setAttribute("resp","usuraio o contraseña incorrectos");

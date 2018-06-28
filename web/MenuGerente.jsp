@@ -9,8 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/estilosGerente.css" rel="stylesheet">
+        <link href="css/estiloGerente.css" rel="stylesheet">
         <script type="text/javascript" src="jsGerente.js"> </script>
+        <%-- SCRIPT ABRAHAM --%>
+          <script type="text/javascript" src="jsAbraham/Abraham.js"> </script>
+          
+          <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+          <%-- SCRIPT ABRAHAM --%>
         <title>Entretiempo</title>
         <h1>Bienvenido!</h1>
     <table align="center" width="100%">
@@ -28,7 +33,27 @@
     </head>
     <body>
         <div id="inicio" style="display: none"><h3>Inicio</h3></div>
-        <div id="empleado" style="display: none"><h3>Empleados</h3></div>
+ <%-- GESTIONES ABRAHAM --%>
+        <div id="empleado" style="display: none"><br><br>
+       
+            <center>
+      <input type="radio" name="Aempleado" onclick="ConsultaGerente();">Consultar
+      <input type="radio" name="Aempleado" onclick="ConsultaGerente();">Registrar
+      <input type="radio" name="Aempleado" onclick="ConsultaGerente();">Actualizar
+      <input type="radio" name="Aempleado" onclick="ConsultaGerente();">Dar de baja 
+     <br><br><br><br>
+               <table>
+          <tr>
+              <td width="80%">
+                  <div id="imprimirselectconsultaabraham" ></div>
+                  <div id="respuestaabraham" ></div>
+                  
+              </td>
+          </tr>
+      </table>
+          </center> 
+     </div>      
+  <%-- GESTIONES ABRAHAM--%>      
         <div id="platillos" style="display: none"><h3>Platillos</h3></div>
         <div id="menu" style="display: none"><h3>Menú del día</h3></div>
         <div id="paquetes" style="display: none"><h3>Paquetes</h3></div>
