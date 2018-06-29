@@ -30,13 +30,26 @@ function ConsultaGerente(){
         + "  </select>  </center>  ";
     document.getElementById("respuestaabraham").innerHTML="";
     }else if (radios[1].checked){
-              document.getElementById("imprimirselectconsultaabraham").innerHTML="<center>Tipo empleado <select class=input  id=consultaE onchange=consultaempleado();>"
-       +" <option value=0> Elige</option>"
-        +"<option value=1> Cocinero</option>"
-        +"<option value=2> Repartidor</option>" 
-        +"<option value=3> Eliminados</option> "
-        +"<option value=4> Todos</option>"
-        + "  </select>  </center>  ";
+              document.getElementById("imprimirselectconsultaabraham").innerHTML="<center>"
+    +"<form enctype='multipart/form-data' id='formu'>"//importante para guardar imagenes y datos
+    +"<input class=input type=text placeholder=Nombre  autofocus name=nombre id=nombre><br><br>"
+    +"<input class=input type=text placeholder=Apellido Paterno  name=apellido_p id=apellido_p><br><br>"
+    +"<input class=input type=text placeholder=Apellido Materno  name=apellido_m id=apellido_m><br><br>"
+    +"<input class=input type=text placeholder=RFC  name=rfc id=rfc><br><br> "                  
+    +"<input class=input type=text placeholder=Telefono name=telefono id=telefono><br><br>"
+ +"<input class=input type=text placeholder=Direccion name=direccion id=direccion><br><br>"
+ 
+ +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Foto<input class=input type=file  placeholder=Imagen name=imagen id=imagen><br><br>"
+ +"<select id=tipo name=tipo class=input><br><br>"
+      +"<option  > Tipo de empleado</option>  "
+      +"<option value=cocinero> Cocinero</option>"     
+      +"<option value=repartidor> Repartidor</option>  "
+  +"</select>"
+  +"<br><br><input class=input type=text placeholder=Usuario name=usuario id=usuario><br><br>"
++"<input class=input type=password placeholder=Contraseña  name=contrasena id=contrasena><br><br>"
++"<input class=btn__submit type=button value=REGISTRAR onclick=RegistraA();>"
++"</form>";//cierre de form
++"</center>";
                 document.getElementById("respuestaabraham").innerHTML="";
     }else if (radios[2].checked){
            document.getElementById("imprimirselectconsultaabraham").innerHTML="<center>Tipo empleado <select class=input  id=consultaE onchange=consultaempleado();>"
@@ -57,6 +70,8 @@ document.getElementById("imprimirselectconsultaabraham").innerHTML="<center>"
     }
 }
 
+///////////////////////CONSULTAS//////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
 function consultaempleado(){
   var titulo=document.getElementById("consultaE");
   var tit=titulo.options[titulo.selectedIndex].value;
@@ -70,8 +85,8 @@ function imprimirEmpleados(){
 
     }
 }
+///////////////////////ELIMINAR//////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
-
 function consultaeliminado(){
   var rfc=document.getElementById("rfc").value;
  objeto2.open("GET","eliminarEmpleado?rfc="+rfc,true);
@@ -99,7 +114,6 @@ function eliminarE(){
  objeto2.onreadystatechange=mostrarmensajeexitoso;
  objeto2.send(null);  
 }
-
 function mostrarmensajeexitoso(){
    if (objeto2.readyState==4){
 
@@ -109,3 +123,31 @@ function mostrarmensajeexitoso(){
     }
 }
 
+///////////////////////////////REGISTRAR//////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+
+
+function RegistraA(){//aqui enviamos todo el formulario anterior
+  var fdata=new FormData(document.getElementById("formu"));
+  objeto2.open("POST","RegistrarE",true);
+  objeto2.onreadystatechange=imprimirRegistro;
+//objeto2.setRequestHeader('Content-type','multipart/form-data','application/x-www-form-urlencoded');
+  objeto2.send(fdata);
+
+}
+
+
+
+
+
+
+
+
+
+
+function imprimirRegistro(){
+   if (objeto2.readyState==4){
+       alert(objeto2.responseText);
+    }
+}

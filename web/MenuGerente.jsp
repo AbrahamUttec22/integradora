@@ -12,7 +12,7 @@
         <link href="css/estiloGerente.css" rel="stylesheet">
         <script type="text/javascript" src="jsGerente.js"> </script>
         <%-- SCRIPT ABRAHAM --%>
-          <script type="text/javascript" src="jsAbraham/Abraham.js"> </script>
+        <script type="text/javascript" src="jsAbraham/abraham2.js"> </script>
           
           <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
           <%-- SCRIPT ABRAHAM --%>
@@ -27,7 +27,7 @@
      <td><input type="button" onclick="DinamicoDiv('paquetes');" value="Paquetes"></td>
         <td><input type="button" onclick="DinamicoDiv('mesas');" value="Mesas"></td>
         <td><input type="button" onclick="DinamicoDiv('archivo');" value="Subir archivo"></td>
-        <td><input type="button" value="Cerrar sesión"></td>
+        <td><a href="index.jsp"><input type="button" value="Cerrar sesión"></a></td>
         </tr>
     </table>
     </head>
@@ -45,7 +45,11 @@
                <table>
           <tr>
               <td width="80%">
-                  <div id="imprimirselectconsultaabraham" ></div>
+
+
+
+                  <div id="imprimirselectconsultaabraham" >
+                  </div>
                   <div id="respuestaabraham" ></div>
                   
               </td>
