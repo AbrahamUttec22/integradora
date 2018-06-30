@@ -12,7 +12,7 @@
         <link href="css/estiloGerente.css" rel="stylesheet">
         <script type="text/javascript" src="jsGerente.js"> </script>
         <%-- SCRIPT ABRAHAM --%>
-        <script type="text/javascript" src="jsAbraham/abraham2.js"> </script>
+        <script type="text/javascript" src="jsAbraham/GestionesA.js"> </script>
           
           <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
           <%-- SCRIPT ABRAHAM --%>

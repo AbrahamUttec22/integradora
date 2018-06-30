@@ -1,16 +1,23 @@
 var objeto;
 var objeto2;
 var objeto3;
+var objeto4;
+var objeto5;
 function instanciar(){
     if (window.ActiveXObject){
         objeto= new ActiveXObject("Microsoft.XMLHttp");
         objeto2= new ActiveXObject("Microsoft.XMLHttp");
-         objeto3= new ActiveXObject("Microsoft.XMLHttp");
+        objeto3= new ActiveXObject("Microsoft.XMLHttp");
+        objeto4= new ActiveXObject("Microsoft.XMLHttp");
+        objeto5= new ActiveXObject("Microsoft.XMLHttp");
+         
         
     }else if ((window.XMLHttpRequest) || (typeof  XMLHttpRequest)!=undefined) {
         objeto=new XMLHttpRequest();
-          objeto2=new XMLHttpRequest();
-      objeto3=new XMLHttpRequest();
+        objeto2=new XMLHttpRequest();
+        objeto3=new XMLHttpRequest
+        objeto4=new XMLHttpRequest();
+        objeto5=new XMLHttpRequest();
     }else{
         alert("Su navegador no soporta AJAX");
         return;
@@ -52,21 +59,17 @@ function ConsultaGerente(){
 +"</center>";
                 document.getElementById("respuestaabraham").innerHTML="";
     }else if (radios[2].checked){
-           document.getElementById("imprimirselectconsultaabraham").innerHTML="<center>Tipo empleado <select class=input  id=consultaE onchange=consultaempleado();>"
-       +" <option value=0> Elige</option>"
-        +"<option value=1> Cocinero</option>"
-        +"<option value=2> Repartidor</option>" 
-        +"<option value=3> Eliminados</option> "
-        +"<option value=4> Todos</option>"
-        + "  </select>  </center>  "; 
+           document.getElementById("imprimirselectconsultaabraham").innerHTML="<center>"
++"Ingresa el rfc del empleado<input type=text id=rfc2>&nbsp;<input type=submit  onclick=consultaactualiza();>"
++"</center>";
+           
 document.getElementById("respuestaabraham").innerHTML="";
 //
     }else if (radios[3].checked){////
 document.getElementById("imprimirselectconsultaabraham").innerHTML="<center>"
 +"Ingresa el rfc del empleado<input type=text id=rfc>&nbsp;<input type=submit value=busca onclick=consultaeliminado();>"
 +"</center>";
-    
-                document.getElementById("respuestaabraham").innerHTML="";
+ document.getElementById("respuestaabraham").innerHTML="";
     }
 }
 
@@ -137,17 +140,45 @@ function RegistraA(){//aqui enviamos todo el formulario anterior
 
 }
 
-
-
-
-
-
-
-
-
-
 function imprimirRegistro(){
    if (objeto2.readyState==4){
        alert(objeto2.responseText);
+    }
+}
+
+///////////////////////////////ACTUALIZAR//////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+function consultaactualiza(){
+  var rfc=document.getElementById("rfc2").value;
+ objeto3.open("GET","ConsultaActualiza?rfc="+rfc,true);
+ objeto3.onreadystatechange=imprimirEmpleadoA;
+ objeto3.send(null);  
+}
+function imprimirEmpleadoA(){
+   if (objeto3.readyState==4){
+       var x=String(objeto3.responseText);
+       if (x==1){
+         alert("No existe ese empleado");
+         document.getElementById("respuestaabraham").innerHTML="<br><br>";
+       }else{
+             document.getElementById("respuestaabraham").innerHTML="<br><br>"+objeto3.responseText+"";
+    
+       }
+  
+    }
+}
+
+function actulizaEm(){
+ var fdata=new FormData(document.getElementById("formuAc"));
+ objeto4.open("POST","ActualizarG",true);
+ objeto4.onreadystatechange=mostrarmens;
+ objeto4.send(fdata);  
+}
+function mostrarmens(){
+   if (objeto4.readyState==4){
+         alert("Datos actualizados");
+         document.getElementById("respuestaabraham").innerHTML="<br><br>";
+       
     }
 }

@@ -158,7 +158,7 @@ public class ActualizarG extends HttpServlet {
             }
    
      
-   
+  
      try {
     if (es.equals("ACTIVO")){
             
@@ -202,9 +202,9 @@ public class ActualizarG extends HttpServlet {
        tipo=request.getParameter("tipo");
        usuario=request.getParameter("usuario");
        contra=request.getParameter("contrasena");
-       rfc=request.getParameter("rfc");
+      // rfc=request.getParameter("rfc");
        rfc2=request.getParameter("rfc2");
-        bo=request.getParameter("enviar");
+       // bo=request.getParameter("enviar");
        estado=request.getParameter("estado");
        String strComand5="";
             try {
