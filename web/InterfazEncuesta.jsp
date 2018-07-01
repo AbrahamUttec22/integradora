@@ -122,7 +122,7 @@ header{
                out.print("Tienes una encuesta pendiente");
                datosCliente.datosCliente.fecha_pedido=fechaBase;
                out.print("<br><br>");
-               out.print("<a href=Encuesta.jsp>Realizar Encuesta</a>");
+               out.print("<a href=Encuesta.jsp target=_blank>Realizar Encuesta</a>");
                out.print("<br><br>");out.print("<br><br>");out.print("<br><br>");
                out.print("<a href=PrincipalUsuario.jsp>Regresar</a>");
            }else if (cont<=1){

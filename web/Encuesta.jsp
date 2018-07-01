@@ -10,119 +10,80 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="jsAbraham/encu.js"></script>
         <title>JSP Page</title>
-         <link rel="stylesheet" href="css/abra.css"> 
-         <style type="text/css" >
-             
-body {
-  background-color: lightblue;
-  }
-
-nav{
-    /*Bordes redondeados*/
-    
-    -webkit-border-radius:100px;/*Para chrome y Safari*/
-    -moz-border-radius:100px;/*Para Firefox*/
-    -o-border-radius:100px;/*Para Opera*/
-    border-radius:100px;/*El estandar por defecto*/
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#CCC));/*Para chrome y Safari*/
-    /*Degradados*/
-    background-image: -moz-linear-gradient(top center, #FFF, #CCC);/*Para Firefox*/
-    background-image: -o-linear-gradient(top, #FFF, #CCC);/*Para Opera*/
-    background-image: linear-gradient(top, #FFF, #CCC);/*El estandar por defecto*/
-    overflow:hidden;
-    padding:50px;
-    width:400px;
-     margin-top: 100px;
-    
-}
-img{
-    align:left;
-}
-header{
-    position: fixed;
-  top:0;
-  width:1300px;
-  height:100px;
-  background-color:#333;
-  color:#FFFFFF;
- padding: 10px;
-  margin-top: 0px;
-  text-align: right;
-  font-size: 100px;
-  }
-  </style>
+  
     </head>
     <body>
         <br><br><br><br><br>
-                
-        <form method="post" action="Encuesta">
-         <table class="tabla">
-       <tr>
+         <center>    
+        <div id="pintar">
+   
+<h1>Por favor evalua los siguientes aspectos del evento</h1>
+<h5>Seleccione una respuesta en cada fila </h5>
 
-<th>   Preguntas </th>
-<th>Regular</th> 
-<th>Bueno</th> 
-<th>Excelente</th> 
+        <br><br><br><br><br>
+        
+        <form enctype='multipart/form-data' id="ev" >
+            
+         <table >
+       <tr >
+
+<th >   </th>
+<th >Regular</th> 
+<th width="8%">Bueno</th> 
+<th >Excelente</th> 
 
        </tr>
-<tr class="modo1">
-    <td>     <label>Pregunta 1</label></td>
-    <td> <input type="radio" value="R" name="1"></td>
-    <td>   <input type="radio" value="B" name="1"></td>
+<tr>
+    <td><label>¿Cómo calificaría la cortesía y trato 
+            de los empleados de “Entretiempo”?</label></td>
+    <td> <input type="radio" value="R" name="a"></td>
+    <td>   <input type="radio" value="B" name="a"></td>
     <td>
-    <input type="radio" value="E" name="1"></td>
+    <input type="radio" value="E" name="a"></td>
     
 
 </tr>
 
-<tr class="modo1">
-    <td>     <label>Pregunta 2</label></td>
-    <td> <input type="radio" value="R" name="2"></td>
-    <td>  <input type="radio" value="B" name="2"></td>
+<tr>
+    <td>     <label>La rapidez con la que le fue otorgado el servicio</label></td>
+    <td> <input type="radio" value="R" name="b"></td>
+    <td>  <input type="radio" value="B" name="b"></td>
     <td>
-     <input type="radio" value="E" name="2"></td>
+     <input type="radio" value="E" name="b"></td>
 </tr>
 
-<tr class="modo1">
-    <td>     <label>Pregunta 3</label></td>
-    <td> <input type="radio" value="R" name="3"></td>
-    <td>   <input type="radio" value="B" name="3"></td>
-    <td> <input type="radio" value="E" name="3"></td>
-    
-    
-          
-           
-</tr>
-
-<tr class="modo1">
-    <td>     <label>Pregunta 4</label></td>
-    <td>     <input type="radio" value="R" name="4"></td>
-    <td>  <input type="radio" value="B" name="4"></td>
-    <td>
-    <input type="radio" value="E" name="4"></td>
-  
-            
-           
-
-</tr>
-
-<tr class="modo1">
-    <td>     <label>Pregunta 5</label></td>
-    <td> <input type="radio" value="R" name="5"></td>
-    <td>   <input type="radio" value="B" name="5"></td>
-    <td>
+<tr>
+    <td>     <label>La calidad del servicio recibido ha sido</label></td>
+    <td> <input type="radio" value="R" name="c"></td>
+    <td>   <input type="radio" value="B" name="c"></td>
+    <td> <input type="radio" value="E" name="c"></td>
          
-            <input type="radio" value="E" name="5"></td>
-    
-     
-       
+</tr>
+
+<tr>
+    <td>     <label>¿Con qué nivel de eficacia le atendimos?</label></td>
+    <td>     <input type="radio" value="R" name="d"></td>
+    <td>  <input type="radio" value="B" name="d"></td>
+    <td>
+    <input type="radio" value="E" name="d"></td>
+</tr>
+
+<tr>
+    <td>     <label>La relación precio / calidad del servicio es</label></td>
+    <td> <input type="radio" value="R" name="e"></td>
+    <td>   <input type="radio" value="B" name="e"></td>
+    <td><input type="radio" value="E" name="e"></td>  
 </tr>
 
 </center>
     </table>
-           <input type="submit" name="enviar"><br><br><br><br><br><br>
-            <input type="text" value="${mensaje}">
+            <br><br><br><br>
+            <input type="button" name="enviar" value="Evaluar" onclick="calculoA();"><br><br><br><br><br><br>
          </form>
+        
+         </div>
+              </center> 
     </body>
 </html>

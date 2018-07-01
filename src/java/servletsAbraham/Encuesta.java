@@ -9,11 +9,12 @@ import java.sql.Statement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+@MultipartConfig
 @WebServlet(name = "Encuesta", urlPatterns = {"/Encuesta"})
 public class Encuesta extends HttpServlet {
       ResultSet cdr=null;
@@ -53,12 +54,15 @@ public class Encuesta extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String resp1,resp2,resp3,resp4,resp5;
-     resp1=request.getParameter("1");
-     resp2=request.getParameter("2");
-     resp3=request.getParameter("3");
-     resp4=request.getParameter("4");
-     resp5=request.getParameter("5");
+         PrintWriter out= response.getWriter();
+             try {
+       String resp1,resp2,resp3,resp4,resp5,ocul;
+     resp1=request.getParameter("a");
+     resp2=request.getParameter("b");
+     resp3=request.getParameter("c");
+     resp4=request.getParameter("d");
+     resp5=request.getParameter("e");
+
      int cont1=0,cont2=0,cont3=0;
      String cal="";
      ////////////////////////////////////////////////////////
@@ -123,16 +127,14 @@ public class Encuesta extends HttpServlet {
               cal="EXCELENTE";
     
     //////////////////////////////////////////////////////////////////////7 
-
-        try {
+out.print("<br><br> Gracias por evaluarnos");
+    
 String sql="insert into encuesta values(null,'"+datosCliente.datosCliente.id_usuario+"','"+cal+"',curdate())";                   
          sentenciaSQL.executeUpdate(sql);
 String sql2="update pedido_evento set estatus='Encuesta_Realizada' where fecha='"+datosCliente.datosCliente.fecha_pedido+"' and id_usuario='"+datosCliente.datosCliente.id_usuario+"'";                   
          sentenciaSQL.executeUpdate(sql2);
-RequestDispatcher rd=null;
-request.setAttribute("mensaje","Encuesta realizada");
-rd=request.getRequestDispatcher("PrincipalUsuario.jsp");
- rd.forward(request, response);
+
+out.close();
         //////////////////////////////////
         } catch (Exception e) {
             System.out.println("error"+e);
