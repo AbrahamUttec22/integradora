@@ -58,6 +58,7 @@ function mandarVariables(){
 function  imprimirConsulta(){
     if (objeto.readyState==4){
         document.getElementById("mesa").innerHTML=""+objeto.responseText+"";
+        document.getElementById("cotizacion").innerHTML="";
     }
    
 }
