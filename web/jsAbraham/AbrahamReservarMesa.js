@@ -30,13 +30,19 @@ function iniciar(){
 }
 
 function mandarVariables(){
-    try {
+  
     var fe=document.getElementById("fecha");
     var fecha=fe.value;
     var h=document.getElementById("hora");
     var hora=h.value;
     var co=document.getElementById("comensal");
     var comensal=co.value;
+    if (fecha=="" || hora=="" || comensal=="" ){
+
+        alert('Completa todos los campos por favor');
+    }else{
+   
+    
     if (comensal>=1 && comensal<=2){
     objeto.open("GET","mesaschicas?fecha="+fecha+"&hora="+hora,true);
     objeto.onreadystatechange=imprimirConsulta;
@@ -55,11 +61,9 @@ function mandarVariables(){
     objeto.send(null);  
     }
 
-    
-    } catch (e) {
-        print("el error"+e);
-    }
 
+     
+    }
    
 }
 

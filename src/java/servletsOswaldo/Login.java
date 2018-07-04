@@ -28,7 +28,7 @@ public class Login extends HttpServlet {
         switch(co.autenticacion(usuario, contrasena))
         {  
             case 1:
-            response.sendRedirect("PrincipalUsuario.jsp");
+            response.sendRedirect("MenuCliente.jsp");
             break;
             case 2:
             response.sendRedirect("Cocinero.jsp");
