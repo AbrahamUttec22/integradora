@@ -18,34 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Login", urlPatterns = {"/inicial"})
 public class Login extends HttpServlet {
         protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-        {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();       
-        String usuario=request.getParameter("uname");
-        String contrasena=request.getParameter("psw");
-        Consultas co=new Consultas();   
-        switch(co.autenticacion(usuario, contrasena))
-        {  
-            case 1:
-            response.sendRedirect("MenuCliente.jsp");
-            break;
-            case 2:
-            response.sendRedirect("Cocinero.jsp");
-            break;
-            case 3:
-            response.sendRedirect("Repartidor.jsp");
-            break;
-            case 4:
-           response.sendRedirect("MenuGerente.jsp");
-            break;
-            case 0:
-            request.setAttribute("resp","usuraio o contraseña incorrectos");
-            RequestDispatcher rd=null;
-            rd= request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
-            break;
-        }   
+            throws ServletException, IOException {       
     }
         
     @Override
@@ -57,7 +30,42 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();       
+        String usuario=request.getParameter("uno");
+        String contrasena=request.getParameter("dos");
+        Consultas co=new Consultas();   
+        switch(co.autenticacion(usuario, contrasena))
+        {  
+            case 1:
+                out.println("MenuCliente.jsp");
+                out.close();
+                //response.sendRedirect("MenuCliente.jsp");
+            break;
+            case 2:
+                out.println("Cocinero.jsp");
+                out.close();
+                //response.sendRedirect("Cocinero.jsp");
+            break;
+            case 3:
+                out.println("Repartidor.jsp");
+                out.close();
+                //response.sendRedirect("Repartidor.jsp");
+            break;
+            case 4:
+                out.println("MenuGerente.jsp");
+                out.close();
+                //response.sendRedirect("MenuGerente.jsp");
+            break;
+            case 0:
+                out.println("index.jsp");
+                out.close();
+//            request.setAttribute("resp","usuraio o contraseña incorrectos");
+//            RequestDispatcher rd=null;
+//            rd= request.getRequestDispatcher("index.jsp");
+//            rd.forward(request, response);
+            break;
+        }   
     }
 
     @Override

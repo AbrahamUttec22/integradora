@@ -12,10 +12,8 @@
 <!DOCTYPE html>
 <%
   String validar =(String)request.getAttribute("mensaje");
-
    if(validar!=null)
        out.println("<script>alert('"+validar+"')" + "</script>");
-
 %>
 <html>
     <head>
@@ -91,7 +89,7 @@ header{
             ResultSet rs=sentenciaSQL.executeQuery(strComando);
             while(rs.next())
             {
-                out.println("<img src="+rs.getString("imagen")+" style='width: 10%;' >");
+                out.println("<img src=imgUsuario/"+rs.getString("imagen")+" style='width: 10%;' >");
                 out.println("<h5>CLIENTE:&nbsp;&nbsp;&nbsp;&nbsp;"+rs.getString("Nombre")+" "+rs.getString("apellido_p")+"</h5>");
                 idT=rs.getInt("id_tarjeta");
             }

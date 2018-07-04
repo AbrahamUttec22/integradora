@@ -1,5 +1,6 @@
 package servletsOswaldo;
 import Conexion.Conexion;
+import datosCliente.datosCliente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.PreparedStatement;
@@ -30,31 +31,38 @@ public class ServRegistrarCliente extends HttpServlet
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {        
+    }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String nombre,app,apm,municipio,cp,colonia,calle,noEx,telefono,correo,imagne, tarjeta,tipoTarjeta,usuario,contra;
+        String codigo= request.getParameter("codigo");
+        if(codigo.equals(datosCliente.codigoVerificacion))
+        {
+            String nombre,app,apm,municipio,cp,colonia,calle,noEx,telefono,correo,imagen, tarjeta,tipoTarjeta,usuario,contra;
         PreparedStatement pst = null;
         ResultSet rs = null;
         Conexion uno=new Conexion();
         uno.Conectar();
         try  
         {           
-            tarjeta=request.getParameter("NoTarjeta");
-            tipoTarjeta=request.getParameter("tarj");
-            nombre=request.getParameter("nombre");
-            app=request.getParameter("App");
-            apm=request.getParameter("Apm");
-            municipio=request.getParameter("Municipio");
-            cp=request.getParameter("CP");
-            colonia=request.getParameter("Colonia");
-            calle=request.getParameter("Calle");
-            noEx=request.getParameter("NoExterior");
-            telefono=request.getParameter("telefono");
-            correo=request.getParameter("correo");
-            imagne=request.getParameter("imagen");
-            usuario=request.getParameter("usr");
-            contra=request.getParameter("cont");
+            imagen=request.getParameter("uno");
+            nombre=request.getParameter("dos");
+            app=request.getParameter("tres");
+            apm=request.getParameter("cuatro");
+            municipio=request.getParameter("cinco");
+            cp=request.getParameter("seis");
+            colonia=request.getParameter("siete");
+            calle=request.getParameter("ocho");
+            noEx=request.getParameter("nueve");
+            telefono=request.getParameter("dies");
+            correo=request.getParameter("once");
+            usuario=request.getParameter("doce");
+            contra=request.getParameter("trece");
+            tarjeta=request.getParameter("quince");
+            tipoTarjeta=request.getParameter("catorce");           
             Statement sentenciaSQL = null;
             String strComando = "select * from cliente where nombre='"+nombre+"' and apellido_p='"+app+"' and apellido_m='"+apm+"'";
             sentenciaSQL=conecta.getSentenciaSQL();
@@ -62,7 +70,7 @@ public class ServRegistrarCliente extends HttpServlet
             if(rs1.next())
             {
                 request.setAttribute("resp","El usuario ya existe");
-                //out.println("<script> alert('El usuario ya existe'); </script>");
+                out.println("<script> alert('El usuario ya existe'); </script>");
             }
             else{
             String sql = "call insertarSesion(?,?)";
@@ -87,23 +95,24 @@ public class ServRegistrarCliente extends HttpServlet
             pst.setString(8, noEx);
             pst.setString(9, telefono);
             pst.setString(10, correo);
-            pst.setString(11, imagne);
+            pst.setString(11, imagen);
             rs=pst.executeQuery();
             }
-            RequestDispatcher rd=null;
-            rd= request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
+            out.println("Registro exitoso ahora inicia sesion");
+            out.close();
         } catch (SQLException ex) {
             out.println("Exepcion SQL: "+ ex.getMessage());
         }
         catch(NullPointerException e){
             out.println("Apuntado SQL: "+ e.getMessage());
+        }finally{
+            out.close();
         }
-    }
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+        }
+        else{
+            out.println("Tu codigo es: "+codigo+" y el codigo de verificacion es "+datosCliente.codigoVerificacion);            
+            out.close();
+        }
     }
     @Override
     public String getServletInfo() {

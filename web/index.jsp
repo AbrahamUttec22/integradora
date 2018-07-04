@@ -10,13 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/login.css">
-   
-        <script> 
-      
-           alert("${resp}"); 
-      
-    
-        </script>
+        <script type="text/javascript" src="jsOswaldoSR.js"></script>
         <title>ENTRETIEMPO</title>
    <style type="text/css">
 body {
@@ -71,16 +65,17 @@ header{
                 
     </center>
 <div id="modal-wrapper" class="modal">
-    <form action="inicial" class="modal-content animate"> 
+    <form class="modal-content animate"> 
     <div class="imgcontainer">
       <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close">&times;</span>
       <img src="imgUsuario/login.png" alt="Avatar" class="avatar">
     </div>
     <div class="container">
-        <input type="text" placeholder="Usuario" name="uname" style="width: 450px;"><br>
-        <input type="password" placeholder="Contraseña" name="psw" style="width: 450px;"><br>       
-        <button type="submit" style="width: 450px;">Login</button><br>
-      <a href="RegistrarCliente.jsp">Registrarme.</a>
+        <input type="text" placeholder="Usuario" id="uname" style="width: 450px;"><br>
+        <input type="password" placeholder="Contraseña" id="psw" style="width: 450px;"><br>       
+        <input type="button" onclick="login();" value="Entrar"><br>
+        <div id="respuesta"></div>
+        <a href="RegistrarCliente.jsp">Registrarme.</a>
     </div>   
   </form>
 </div>
