@@ -91,13 +91,43 @@
                 <tr>
                     <td width="20%">
                         <a href="#"  onclick="mostrarE();">Encuestas</a><br><br>
-                        <a href="#" onclick="mostrarT();">Ticket de Reservas</a>  <br><br>
+                        <a href="#" onclick="mostrarT();">Ticket de Reservas</a><br><br>
                     </td>
                     <td>
                     <center>
                         <div id="encuestaabraham">
-  
-                        </div>
+                            <% int idT=0;
+            String img;
+            Conexion conecta = new Conexion();
+            conecta.Conectar();
+            Statement sentenciaSQL = null;
+            try{
+            String strComando = "select * from cliente c inner join sesion s on c.id_usuario=s.id_usuario where c.id_usuario="+id;
+            sentenciaSQL=conecta.getSentenciaSQL();
+            ResultSet rs=sentenciaSQL.executeQuery(strComando);
+            while(rs.next())
+            {
+                out.println("<img src=imgUsuario/"+rs.getString("imagen")+" style='width: 10%;' >");
+                out.println("<h5>CLIENTE:&nbsp;&nbsp;&nbsp;&nbsp;"+rs.getString("Nombre")+" "+rs.getString("apellido_p")+"</h5>");
+                idT=rs.getInt("id_tarjeta");
+            }
+            }   catch(Exception e){
+                out.println("ERROR"+e.getMessage());
+            }
+            try{
+            String strComando = "select * from tarjeta t inner join cliente c on t.id_tarjeta=c.id_tarjeta where t.id_tarjeta="+idT;
+            sentenciaSQL=conecta.getSentenciaSQL();
+            ResultSet rs=sentenciaSQL.executeQuery(strComando);
+            while(rs.next())
+            {
+                out.println("<h5>Saldo: &nbsp;&nbsp;&nbsp;&nbsp;"+rs.getString("saldo")+"</h5>");
+            }
+            }   catch(Exception e){
+                out.println("ERROR"+e.getMessage());
+            }
+        %>
+                            <a href="ServBuscarClinte"><h5>Actualziar Datos</h5></a>
+                        </div>                       
                     </center>
                         
                     </td>
@@ -125,12 +155,14 @@
               </center>
         </div>
          <%--PROCESOS ABRAHAM--%>
-        <%--Procesos cheli--%>
+      <%--Procesos cheli--%>
         <div id="paquetes" style="display: none"><h3>Paquetes para eventos</h3>
             <div id="opc"><br/><form name="opciones">
             <input type="radio" name="opc" value="1" onclick="MostrarOpciones();">&nbsp;Ver paquetes&nbsp;&nbsp;&nbsp;
             <input type="radio" name="opc" value="2" onclick="MostrarOpciones();">&nbsp;Ver platillo
-                </form></div><div id="detallepaquetes"></div>
+                </form></div><div id="detallepaquetes"></div><div id="mostrarinfo"></div>
         </div>
+
+
     </body>
 </html>

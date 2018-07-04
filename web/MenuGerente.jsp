@@ -4,6 +4,9 @@
     Author     : Araceli
 --%>
 
+<%@page import="Conexion.Conexion"%>
+<%@page import="java.sql.*"%>
+<%@page import="java.sql.SQLException"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -104,8 +107,51 @@
      </div>      
      <%-- GESTIONES ABRAHAM--%>   
         <div id="platillos" style="display: none"><h3>Platillos</h3></div>
-        <div id="menu" style="display: none"><h3>Menú del día</h3></div>
-        <div id="paquetes" style="display: none"><h3>Paquetes</h3></div>
+       <%--Menu cheli--%>
+        <div id="menu" style="display: none"><h3 align="center">Menú del día</h3>
+            <div id="consultar"><form align="center">
+            <label>Descripción del Menú</label>
+            <br/>
+            <textarea id="descripcion" rows="10" cols="40" required=""></textarea>
+            <br/><br/><br/>
+            <label>Precio</label>&nbsp;&nbsp;&nbsp;$<input type="text" id="precio" required=""><br/><br/><br/>
+            <label>Imagen</label>&nbsp;&nbsp;&nbsp;<input type="file" id="imagen" required=""><br/><br/><br/>
+            <input type="button" value="Guardar" onclick="SubirMenu();">&nbsp;&nbsp;&nbsp;
+            <input type="button" value="Ver menú" onclick="ConsultarMenu();"><br/><br/></form>
+            </div><div id="detallemenu"></div>           
+        </div>
+
+       <div id="paquetes" style="display: none"><h3 align="center">Paquetes</h3>
+            <!--<br/><center><input type="button" value="Consultar" onclick="ConsultarPaquetes();">
+                <input type="button" value="Registrar" onclick="RegistrarPaquete();">
+                <input type="button" value="Actualizar" onclick="ActualizarPaquete();">
+            <br/><br/></center>       --><div id="mostrar">
+            <%
+Statement sentenciaSQL=null;
+Conexion conecta=new Conexion();
+conecta.Conectar();
+try{
+            String strComando="Select * from paquete";
+            sentenciaSQL=conecta.getSentenciaSQL();
+            ResultSet cdr=sentenciaSQL.executeQuery(strComando);
+            out.println("<table align=center width=100% ><tr><td>Nombre</td><td>Precio</td><td>Descripción</td><td>Imagen</td></tr>");
+            while (cdr.next()){
+                out.println("<tr>");
+                out.println("<td width=20>"+cdr.getString("nombre_paquete")+"</td>");
+                out.println("<td width=15>"+cdr.getString("precio")+"</td>");
+                out.println("<td width=30>"+cdr.getString("descripcion")+"</td>");
+                out.println("<td width=15><img src="+cdr.getString("imagen")+" width=70% > </td>");
+                out.println("<td width=15><input type=button value=Actualizar onclick=ActualizarPaquete("+cdr.getString("id_paquete")+");></td>");
+                out.println("<td width=15><input type=button value=Eliminar onclick=EliminarPaquetes("+cdr.getString("id_paquete")+");></td>");
+                out.println("</tr>");
+                }
+                out.println("</table>");
+        }catch(SQLException e){
+            out.println(e);
+    }
+            %>
+            <center><input type="button" value="Registrar nuevo paquete" onclick="RegistrarPaquete()"></center></div>
+            <div id="detallePaquetes"></div></div> 
     <%-- MESAS ABRAHAM--%>   
         <div id="mesas" style="display: none">
             <br><br><br><br>
