@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 @MultipartConfig
 @WebServlet(name = "Encuesta", urlPatterns = {"/Encuesta"})
 public class Encuesta extends HttpServlet {
@@ -128,10 +129,13 @@ public class Encuesta extends HttpServlet {
     
     //////////////////////////////////////////////////////////////////////7 
 out.print("<br><br> Gracias por evaluarnos");
-    
-String sql="insert into encuesta values(null,'"+datosCliente.datosCliente.id_usuario+"','"+cal+"',curdate())";                   
+    HttpSession cliente = request.getSession();
+  
+HttpSession encuesta = request.getSession();
+  
+String sql="insert into encuesta values(null,'"+cliente.getAttribute("cliente")+"','"+cal+"',curdate())";                   
          sentenciaSQL.executeUpdate(sql);
-String sql2="update pedido_evento set estatus='Encuesta_Realizada' where fecha='"+datosCliente.datosCliente.fecha_pedido+"' and id_usuario='"+datosCliente.datosCliente.id_usuario+"'";                   
+String sql2="update pedido_evento set estatus='Encuesta_Realizada' where fecha='"+encuesta.getAttribute("fechaEncuesta")+"' and id_usuario='"+cliente.getAttribute("cliente")+"'";                   
          sentenciaSQL.executeUpdate(sql2);
 
 out.close();

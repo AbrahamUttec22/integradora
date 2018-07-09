@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servletsOswaldo;
 
 import clases_osr.Consultas;
@@ -14,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "Login", urlPatterns = {"/inicial"})
 public class Login extends HttpServlet {
@@ -41,20 +38,28 @@ public class Login extends HttpServlet {
                 out.println("MenuCliente.jsp");
                 out.close();
                 //response.sendRedirect("MenuCliente.jsp");
+                  HttpSession cliente = request.getSession();
+           cliente.setAttribute("cliente",datosCliente.datosCliente.id_usuario);
             break;
             case 2:
                 out.println("Cocinero.jsp");
                 out.close();
+                   HttpSession cocinero = request.getSession();
+           cocinero.setAttribute("cocinero",datosCliente.datosCliente.id_usuario);
                 //response.sendRedirect("Cocinero.jsp");
             break;
             case 3:
                 out.println("Repartidor.jsp");
                 out.close();
+                  HttpSession repartidor = request.getSession();
+           repartidor.setAttribute("repartidor",datosCliente.datosCliente.id_usuario);
                 //response.sendRedirect("Repartidor.jsp");
             break;
             case 4:
                 out.println("MenuGerente.jsp");
                 out.close();
+                  HttpSession gerente = request.getSession();
+           gerente.setAttribute("gerente",datosCliente.datosCliente.id_usuario);
                 //response.sendRedirect("MenuGerente.jsp");
             break;
             case 0:

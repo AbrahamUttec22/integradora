@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "imprimirTicketMesa", urlPatterns = {"/imprimirTicketMesa"})
 public class imprimirTicketMesa extends HttpServlet {
@@ -52,7 +53,9 @@ public class imprimirTicketMesa extends HttpServlet {
      String mesa="",fecha="",hora_inicio="";
      fecha=request.getParameter("fecha");
      hora_inicio=request.getParameter("hora");
-  String sql2="select * from reserva_mesa where id_usuario="+id_usuario+" and hora_inicio='"+hora_inicio+"' and fecha='"+fecha+"'";
+     HttpSession cliente = request.getSession();
+   
+  String sql2="select * from reserva_mesa where id_usuario="+cliente.getAttribute("cliente")+" and hora_inicio='"+hora_inicio+"' and fecha='"+fecha+"'";
         
   cdr=sentenciaSQL.executeQuery(sql2);  
        OutputStream out= response.getOutputStream();

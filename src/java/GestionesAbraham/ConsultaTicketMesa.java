@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet(name = "ConsultaTicketMesa", urlPatterns = {"/ConsultaTicketMesa"})
@@ -57,9 +58,10 @@ int id_usuario=0;
 id_usuario=datosCliente.datosCliente.id_usuario;
 String sql="",fecha="",hora_inicio="";
 int cont=0;
-
+HttpSession cliente = request.getSession();
+            
 try {
-sql="select fecha,hora_inicio from reserva_mesa where id_usuario="+id_usuario+"";
+sql="select fecha,hora_inicio from reserva_mesa where id_usuario="+cliente.getAttribute("cliente")+"";
 cdr=sentenciaSQL.executeQuery(sql);  
 while (cdr.next()){
 cont++;

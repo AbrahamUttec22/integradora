@@ -52,7 +52,10 @@
             mesH=Integer.parseInt(mesHOY);
             diaH=Integer.parseInt(diaHOY);
      ////////////////////////////////////////////////////JALAR FECHA DE REGISTRO
-     String sql="select fecha from pedido_evento where id_usuario='"+datosCliente.datosCliente.id_usuario+"' and estatus='ENTREGADO' ";
+     
+            HttpSession cliente = request.getSession();
+            
+     String sql="select fecha from pedido_evento where id_usuario='"+cliente.getAttribute("cliente")+"' and estatus='ENTREGADO' ";
      int cont=0;
     
      PreparedStatement sentencia= conexion.getConexion().prepareCall(sql);
@@ -79,10 +82,14 @@
            }
  }//while
             
- /////////////////////////////VALIDACION           
+ /////////////////////////////VALIDACION  
+ 
+
            if (cont>=2){
                out.print("Tienes una encuesta pendiente");
-               datosCliente.datosCliente.fecha_pedido=fechaBase;
+              
+                HttpSession encuesta = request.getSession();
+  encuesta.setAttribute("fechaEncuesta",fechaBase);
                out.print("<br><br>");
                out.print("<a href=Encuesta.jsp target=_blank>Realizar Encuesta</a>");
                out.print("<br><br>");out.print("<br><br>");out.print("<br><br>");

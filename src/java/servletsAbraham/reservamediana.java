@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "reservamediana", urlPatterns = {"/reservamediana"})
 public class reservamediana extends HttpServlet {
@@ -71,9 +72,15 @@ public class reservamediana extends HttpServlet {
 //        
 //         minutos=Integer.parseInt(min1);//minutos
 /////////////////////////////////Y AQUI REGISTRAMOS///////////////////////////////////7
+HttpSession cliente = request.getSession();
+     String cas=String.valueOf(cliente.getAttribute("cliente"));
+int id_s=Integer.parseInt(cas);
+   
+
+
 final String sql="{call reservaMesa(?,?,?,?,?,?,?) }";//declaramos una constante que contendra el nombre del procedimiento almacenado
 CallableStatement cs=conecta.getConexion().prepareCall(sql); 
-cs.setInt(1,id_usuario);
+cs.setInt(1,id_s);
 cs.setString(2,mesa);
 cs.setString(3,fecha);
 cs.setString(4,hora_inicio);

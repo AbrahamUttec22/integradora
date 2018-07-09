@@ -17,6 +17,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "ticketMesa", urlPatterns = {"/ticketMesa"})
 public class ticketMesa extends HttpServlet {
@@ -42,7 +43,9 @@ public class ticketMesa extends HttpServlet {
     id_usuario=datosCliente.datosCliente.id_usuario;
     String id_reserva_mesa="";
         try {
-       String sql="select max(id_reserva_mesa) from reserva_mesa where id_usuario="+id_usuario+"";
+             HttpSession cliente = request.getSession();
+   
+       String sql="select max(id_reserva_mesa) from reserva_mesa where id_usuario="+cliente.getAttribute("cliente")+"";
        cdr=sentenciaSQL.executeQuery(sql);  
        while (cdr.next()){
            id_reserva_mesa=cdr.getString(1);
@@ -51,6 +54,8 @@ public class ticketMesa extends HttpServlet {
      //select * from reserva_mesa where id_reserva_mesa=122;
      //folio de reserva |tipo_mesa |fecha hora_reservacion
      String mesa="",fecha="",hora_inicio="";
+    
+
   String sql2="select * from reserva_mesa where id_reserva_mesa='"+id_reserva_mesa+"'";
        cdr=sentenciaSQL.executeQuery(sql2);  
        OutputStream out= response.getOutputStream();
