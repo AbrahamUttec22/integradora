@@ -162,7 +162,8 @@ public class ActualizarG extends HttpServlet {
      try {
     if (es.equals("ACTIVO")){
             
- final String path = "C:/Users/granq/Documents/NetBeansProjects/SWPR/web/imgUsuario/";
+// final String path = "C:/Users/granq/Documents/NetBeansProjects/SWPR/web/imgUsuario/";
+ final String path = "C:\\Users\\Oswaldo\\Desktop\\SWPR\\web\\imgUsuario\\";
     final Part filePart = request.getPart("imagen");
     final String fileName = (String) getFileName(filePart);
     OutputStream out = null;

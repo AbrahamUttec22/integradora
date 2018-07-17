@@ -60,30 +60,26 @@ public void init(ServletConfig config) throws ServletException{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//         response.setContentType("text/html;charset=UTF-8");
-//        PrintWriter out=response.getWriter();
-//                         try{
-//            String strComando="Select * from paquete";
-//            sentenciaSQL=conecta.getSentenciaSQL();
-//            ResultSet cdr=sentenciaSQL.executeQuery(strComando);
-//            out.println("<table>");
-//            while (cdr.next()){
-//                out.println("<tr>");
-//                out.println("<td width=15>"+cdr.getInt("id_paquete")+"</td>");
-//                out.println("<td width=20>"+cdr.getString("nombre_paquete")+"</td>");
-//                out.println("<td width=15>"+cdr.getString("precio")+"</td>");
-//                out.println("<td width=30>"+cdr.getString("descripcion")+"</td>");
-//                out.println("<td width=15><img src="+cdr.getString("imagen")+" width=70% > </td>");
-//                out.println("<td width=10>"+"<form method='post' action='GestionesPaquetes'> <input type='submit' value='Actualizar' name='submits'> <input type='hidden' value='"+cdr.getInt("id_paquete")+"' name='numero'></form>"+"</td>");
-//                out.println("<td width=10>"+"<form method='get' action='GestionesPaquetes'> <input type='submit' value='Eliminar' name='submits'> <input type='hidden' value='"+cdr.getInt("id_paquete")+"' name='numero'></form>"+"</td>");
-//                out.println("</tr>");
-//                  out.println("</table>");
-//                               }
-//                
-//        }catch(SQLException e){
-//            out.println(e);
-//    }
-out.println("hola");
+         response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out=response.getWriter();
+                         try{
+            String strComando="Select * from paquete";
+            sentenciaSQL=conecta.getSentenciaSQL();
+            ResultSet cdr=sentenciaSQL.executeQuery(strComando);
+            out.println("<table align=center width=100%><tr><td>ID</td><td>Nombre</td><td>Precio</td><td>Descripción</td><td>Imagen</td></tr>");
+            while (cdr.next()){
+                out.println("<tr>");
+                out.println("<td width=15>"+cdr.getInt("id_paquete")+"</td>");
+                out.println("<td width=20>"+cdr.getString("nombre_paquete")+"</td>");
+                out.println("<td width=15>"+cdr.getString("precio")+"</td>");
+                out.println("<td width=30>"+cdr.getString("descripcion")+"</td>");
+                out.println("<td width=15><img src="+cdr.getString("imagen")+" width=70% > </td>");
+                out.println("</tr>");
+                }
+                out.println("</table>");
+        }catch(SQLException e){
+            out.println(e);
+    }
     }
 
     /**
@@ -97,7 +93,9 @@ out.println("hola");
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+         response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out=response.getWriter();
+        out.println("Hola");
     }
 
     /**

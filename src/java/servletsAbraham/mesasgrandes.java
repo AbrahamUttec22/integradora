@@ -189,7 +189,7 @@ out.print("<td><input type='button' id='mesas"+i+"' class='grandesDisponibles' v
                }else {
             String validar="Solo puedes reservar 2hrs de anticipacion";
 
-               out.println("alert('"+validar+"')");
+                    out.println(""+validar);
          out.close();
   } 
   

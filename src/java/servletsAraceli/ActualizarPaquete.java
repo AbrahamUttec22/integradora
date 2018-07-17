@@ -66,32 +66,20 @@ public void init(ServletConfig config) throws ServletException{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombre, descripcion, imagen;
-        double precio;
-        int id;
-        try(PrintWriter out = response.getWriter()){
-            id=Integer.parseInt(request.getParameter("id_paquete"));
-          nombre=request.getParameter("nombre_paquete");
-         descripcion=request.getParameter("descripcion");
-         imagen="img/"+request.getParameter("imagen");
-         precio=Double.parseDouble(request.getParameter("precio"));
-           sentenciaSQL.executeUpdate("UPDATE paquete SET nombre_paquete='"+nombre+"', precio="+precio+", descripcion='"+descripcion+"', imagen="+imagen+"' WHERE id_paquete="+id+"");
-        out.println(sentenciaSQL);
-           out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Actualizar Paquete</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>El registro se actualizo exitosamente</h1>");
-            out.println("<a href=ConsultarPaquete.jsp>Regresar</a>");
-            out.println("<a href=Menu.jsp>Menú principal</a>");
-            out.println("</body>");
-            out.println("</html>");  
-       } catch (IOException ex) {
-            out.println(ex);
-            ex.printStackTrace();
-        }catch(SQLException e){
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out=response.getWriter();
+        int id=Integer.parseInt(request.getParameter("id"));
+                try{
+           String strComando="SELECT * FROM paquete where id_paquete="+id;
+            cdr=sentenciaSQL.executeQuery(strComando);
+            while(cdr.next()){
+                out.println("<br/><br/><form align=center>Nombre: &nbsp&nbsp<input type=text value='"+cdr.getString("nombre_paquete")+"'id=nombre readonly=>");
+                out.println("<br/><br/><br/>Precio:&nbsp&nbsp$<input type=text value='"+cdr.getString("precio")+"' id=pre >");
+ out.println("<br/><br/><br/>Descripcion:&nbsp&nbsp<textarea id=desc >"+cdr.getString("descripcion")+"</textarea>");          
+           out.println("<br/><br/><br/><input type=button value='Guardar cambios' onclick=GuardarCambios();>");
+           out.println("&nbsp&nbsp&nbsp&nbsp<input type=button value='Cancelar' onclick=Mostrar();></form>");
+            } 
+       }catch(SQLException e){
         e.printStackTrace();
           out.println(e);
         }
@@ -108,30 +96,18 @@ public void init(ServletConfig config) throws ServletException{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombre, descripcion, imagen;
-        double precio;
-        int id;
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-             id=Integer.parseInt(request.getParameter("id_paquete"));
-          nombre=request.getParameter("nombre_paquete");
-         descripcion=request.getParameter("descripcion");
-         imagen=request.getParameter("imagen");
-         precio=Double.parseDouble(request.getParameter("precio"));
-           sentenciaSQL.executeUpdate("UPDATE paquete SET nombre_paquete='"+nombre+"', precio="+precio+", descripcion='"+descripcion+"', imagen='img/"+imagen+"' WHERE id_paquete="+id+"");
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Actualizar Paquete</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>El registro se actualizo exitosamente</h1>");
-            out.println("<a href=ConsultarPaquete.jsp>Regresar</a>");
-            out.println("<a href=PrincipalG.jsp>Menú principal</a>");
-            out.println("</body>");
-            out.println("</html>"); 
+         response.setContentType("text/html;charset=UTF-8");
+         PrintWriter out = response.getWriter();
+        String nombre, descripcion;
+        double precio;       
+        try{
+          nombre=request.getParameter("nombre");
+         descripcion=request.getParameter("desc");
+         precio=Double.parseDouble(request.getParameter("pre"));
+           sentenciaSQL.executeUpdate("UPDATE paquete SET precio="+precio+", descripcion='"+descripcion+"' WHERE nombre_paquete='"+nombre+"'");
+            out.println("El registro se actualiz&oacute; exitosamente");
         } catch (SQLException ex) {
-        Logger.getLogger(ActualizarPaquete.class.getName()).log(Level.SEVERE, null, ex);
+       out.print(ex);
     }
     }
 

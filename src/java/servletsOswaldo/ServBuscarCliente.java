@@ -17,10 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Oswaldo
- */
 @WebServlet(name = "ServBuscarClinte", urlPatterns = {"/ServBuscarClinte"})
 public class ServBuscarCliente extends HttpServlet {
 ResultSet cdr = null;
@@ -35,9 +31,14 @@ ResultSet cdr = null;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) 
+        PrintWriter out = response.getWriter();
+        try 
         {
+            ////////////////////
+                ////////////////////
             id=datosCliente.id_usuario;
+                ////////////////////
+            ////////////////////
             String strComando = "SELECT * FROM cliente WHERE id_usuario="+id;
             cdr = sentenciaSQL.executeQuery(strComando);
             out.println("<!DOCTYPE html>");
@@ -64,7 +65,7 @@ ResultSet cdr = null;
                 out.println("<label>Numero Exterior</label><br>");
                 out.println("<input type='text' value='"+cdr.getString("no_exterior")+"' name='num'> <br><br>");
                 out.println("<input type='submit' value='ACTUALIZAR'>");
-                out.println("<a href='PrincipalUsuario.jsp'><input type='button' value='CANCELAR'></a>");
+                out.println("<a href='PrincipalUsuario.jsp'><input type='button' value='ACTUALIZAR'></a>");
             }
             out.println("</form>");
             out.println("</body>");
@@ -82,7 +83,39 @@ ResultSet cdr = null;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try 
+        {
+           int idC = Integer.parseInt(request.getParameter("uno"));
+            id=datosCliente.id_usuario;
+            String strComando = "SELECT * FROM cliente WHERE id_usuario="+idC;
+            cdr = sentenciaSQL.executeQuery(strComando);
+            out.println("<h2>Datos Cliente</h2>");
+            while(cdr.next())
+            {
+                out.println("<label>Correo</label><br>");
+                out.println("<input type='text' value='"+cdr.getString("correo")+"' id='correo'> <br><br>");
+                out.println("<label>Telefono</label><br>");
+                out.println("<input type='text' value='"+cdr.getString("telefono")+"' id='telefono'> <br><br>");
+                out.println("<label>Municipio</label><br>");
+                out.println("<input type='text' value='"+cdr.getString("municipio")+"' id='muni'> <br><br>");
+                out.println("<label>Codigo Postal</label><br>");
+                out.println("<input type='text' value='"+cdr.getString("codigo_postal")+"' id='cp'> <br><br>");
+                out.println("<label>Colonia</label><br>");
+                out.println("<input type='text' value='"+cdr.getString("colonia")+"' id='colo'> <br><br>");
+                out.println("<label>Calle</label><br>");
+                out.println("<input type='text' value='"+cdr.getString("calle")+"' id='calle'> <br><br>");
+                out.println("<label>Numero Exterior</label><br>");
+                out.println("<input type='text' value='"+cdr.getString("no_exterior")+"' id='num'> <br><br>");
+                out.println("<input type='button' value='CANCELAR' onclick='RecuperarDatosCliente();'>");
+            }
+            out.close();
+        } catch (SQLException ex) {
+        out.println("error "+ex);
+        }finally{
+            out.close();
+        }
     }
     @Override
     public String getServletInfo() {

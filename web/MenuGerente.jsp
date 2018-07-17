@@ -11,14 +11,26 @@
 <!DOCTYPE html>
 <html>
     <head>
+         <%-- SCRIPT JONATHAN cliente --%>
+        <script type="text/javascript" src="jsJonathan/GestionarD.js"> </script>
+          
+           <%-- SCRIPT JONATHAN --%>
+        <script type="text/javascript" src="jsOswaldoSalazar.js"> </script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/estiloGerente.css" rel="stylesheet">
         <script type="text/javascript" src="jsGerente.js"> </script>
         <%-- SCRIPT ABRAHAM --%>
         <script type="text/javascript" src="jsAbraham/GestionesA.js"> </script>
+        <script type="text/javascript" src="jsCheli/ActivarTarjetas.js"> </script>
+        <script type="text/javascript" src="jsCheli/jsarchivo.js"> </script>
+        <script type="text/javascript" src="jsCheli/Menu.js"> </script>
+        <script type="text/javascript" src="jsCheli/jsCalificar.js"> </script>
+        <script type="text/javascript" src="jsCheli/jsPaquetes.js"> </script>
+        <script type="text/javascript" src="jsCheli/jsPedidosPaquetes.js"> </script>
+        <script type="text/javascript" src="jsCheli/jsQuejas.js"> </script>
         <script type="text/javascript" src="jsAbraham/Mesagerente.js"> </script> 
           <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-          <style>
+        <style>
  .chicasDisponibles{
   background-image:url(img/chicasD.jpeg);
   background-repeat:no-repeat;
@@ -64,6 +76,8 @@
        
         </style>
           <%-- SCRIPT ABRAHAM --%>
+          
+         
         <title>Entretiempo</title>
         <h1>Bienvenido!</h1>
     <table align="center" width="100%">
@@ -71,10 +85,12 @@
             <td><input type="button" value="Inicio" onclick="DinamicoDiv('inicio');"></td>
             <td><input type="button" onclick="DinamicoDiv('empleado');"value="Empleados"></td>
             <td><input type="button" onclick="DinamicoDiv('platillos');" value="Platillos" onclick=""></td>
+            <td><input type="button" onclick="DinamicoDiv('repartidor');"value="Asignar Repartidor"></td>
        <td><input type="button" onclick="DinamicoDiv('menu');" value="Subir menú del día"></td>
      <td><input type="button" onclick="DinamicoDiv('paquetes');" value="Paquetes"></td>
         <td><input type="button" onclick="DinamicoDiv('mesas');" value="Mesas"></td>
         <td><input type="button" onclick="DinamicoDiv('archivo');" value="Subir archivo"></td>
+        <td><input type="button" onclick="DinamicoDiv('reportesE');" value="Reportes de encuestas"></td>
         <td><a href="index.jsp"><input type="button" value="Cerrar sesión"></a></td>
         </tr>
     </table>
@@ -106,9 +122,9 @@
           </center> 
      </div>      
      <%-- GESTIONES ABRAHAM--%>   
-        <div id="platillos" style="display: none"><h3>Platillos</h3></div>
+       
        <%--Menu cheli--%>
-        <div id="menu" style="display: none"><h3 align="center">Menú del día</h3>
+  <div id="menu" style="display: none"><h3 align="center">Menú del día</h3>
             <div id="consultar"><form align="center">
             <label>Descripción del Menú</label>
             <br/>
@@ -120,7 +136,12 @@
             <input type="button" value="Ver menú" onclick="ConsultarMenu();"><br/><br/></form>
             </div><div id="detallemenu"></div>           
         </div>
-
+  <div id="repartidor" style="display: none">
+            <h3>Asignar Repartidor</h3>
+            <input type="button" value="Asignar Repartidor" onclick="MostrarEmpleadosDispoiblesyOrdenesListas();">
+            <!-- <input type="button" value="Asignar Repartidor" onclick="verOrdenesOswaldo2();">-->            
+            <div id="lista"></div>
+        </div>
        <div id="paquetes" style="display: none"><h3 align="center">Paquetes</h3>
             <!--<br/><center><input type="button" value="Consultar" onclick="ConsultarPaquetes();">
                 <input type="button" value="Registrar" onclick="RegistrarPaquete();">
@@ -151,7 +172,9 @@ try{
     }
             %>
             <center><input type="button" value="Registrar nuevo paquete" onclick="RegistrarPaquete()"></center></div>
-            <div id="detallePaquetes"></div></div> 
+            <div id="detallePaquetes"></div>
+                
+       </div> 
     <%-- MESAS ABRAHAM--%>   
         <div id="mesas" style="display: none">
             <br><br><br><br>
@@ -172,6 +195,48 @@ try{
     </center>
  </div>  
     <%-- MESAS ABRAHAM--%> 
-        <div id="archivo" style="display: none"><h3>Subir archivo</h3></div>
+        <div id="archivo" style="display: none"><h3>Subir archivo</h3>
+            <br/><center> Elegir archivo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="archivotxt">
+                <br/><br/><input type="button" value="Subir Archivo" onclick="subirarchivo();" required=""><div id="respuestaArchivo"></div></center>
+        </div>
+        <%-- REPORTES ABRAHAM--%> 
+        <div id="reportesE" style="display: none">
+            <br><br><br><br>
+            <center>
+                <a href="GraficasMes.jsp" target="_blank"> <input type="button" value="MES"></a>
+                <br><br><input type="button" value="Reportes de quejas" onclick="Reportes();">
+                <br><br><div id="detallesreportes"></div>
+            </center>
+        </div>
+            
+       
+        <%-- REPORTES ABRAHAM--%> 
+                 	<%-- GESTIONES JON --%>
+ <div id="platillos" style="display: none"><br><br>
+        <center>
+      <input type="radio" name="platillor" onclick="RegistarP();">Registar
+      <input type="radio" name="platillor" onclick="RegistarP();">Consultar
+      
+     <br><br><br><br>
+               <table>
+          <tr>
+	     <td VALIGN="TOP" width="20%">
+		<div id="mostrar0" >
+                  </div>
+	     </td>
+              <td width="80%">
+
+
+
+                  <div id="mostrar1" >
+                  </div>
+                  <div id="mensaje1" ></div>
+                  
+              </td>
+          </tr>
+      </table>
+          </center> 
+     </div>      
+        <%-- GESTIONES JON --%>
     </body>
 </html>

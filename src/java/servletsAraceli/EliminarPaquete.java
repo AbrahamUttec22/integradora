@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servletsAraceli;
 
 import Conexion.Conexion;
@@ -75,9 +70,26 @@ public void init(ServletConfig config) throws ServletException{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
+       response.setContentType("text/html;charset=UTF-8"); 
+       PrintWriter out = response.getWriter();
+               int id;
+               String opc;
+       try {
+           id=Integer.parseInt(request.getParameter("id"));
+           opc=request.getParameter("opc");
+           if(opc.equals("si")){
+               sentenciaSQL.executeUpdate("DELETE FROM paquete WHERE id_paquete="+id); 
+               out.println("El paquete se elimino correctamente");
+           }else{
+              out.println("Se cancelo la operación");
+           }
+        }catch(SQLException e){
+        e.printStackTrace();
+        }finally{
+            out.close();
+        }
+ }
+   
     /**
      * Handles the HTTP <code>POST</code> method.
      *

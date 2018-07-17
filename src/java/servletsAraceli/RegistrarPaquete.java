@@ -31,7 +31,7 @@ Conexion conecta=new Conexion();
 public void init(ServletConfig config) throws ServletException{
     super.init(config);
     conecta.Conectar();
-    sentenciaSQL=conecta.getSentenciaSQL();
+    sentenciaSQL=(Statement) conecta.getSentenciaSQL();
 }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -71,9 +71,33 @@ public void init(ServletConfig config) throws ServletException{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out=response.getWriter();
+        double precio;
+        String nombre, descripcion, imagen;
+        try {
+             nombre=request.getParameter("nom");
+       precio=Double.parseDouble(request.getParameter("pre"));
+        descripcion=request.getParameter("desc");
+       imagen=request.getParameter("imagen");
+             String strComando="SELECT * FROM paquete where nombre_paquete='"+nombre+"'";
+            cdr=sentenciaSQL.executeQuery(strComando);
+            if(cdr.next()){
+                out.println("Ya existe un paquete con ese nombre");
+            }   else{           
+        sentenciaSQL.executeUpdate("INSERT INTO paquete VALUES (null,'"+nombre+"',"+precio+",'"+descripcion+"','img/"+imagen+"')");
+//         out.println("INSERT INTO piloto VALUES ("+id+",'"+nombre+"',"+horas+",'"+telefono+"','"+email+"')");       
+        out.println("El paquete se registr&oacute correctamente");
+            }
+        }catch(SQLException e){
+            out.println(e);
+    }catch(NullPointerException e){
+        e.printStackTrace();
+    }finally{
+            out.close();
+        }
+//out.println("hola");
     }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -85,51 +109,7 @@ public void init(ServletConfig config) throws ServletException{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id;
-       String nombre, desc, imagen;
-       double precio;
-        response.setContentType("text/html");
-        PrintWriter out=response.getWriter();       
-         try {
-             // id=Integer.parseInt(request.getParameter("idPaquete"));
-              precio=Double.parseDouble(request.getParameter("precioPaquete"));
-        nombre=request.getParameter("nombrePaquete");
-        desc=request.getParameter("descripcionPaquete");
-        imagen=request.getParameter("imagenPaquete");
-          String strComando="SELECT * FROM paquete where nombre_paquete='"+nombre+"'";
-            cdr=sentenciaSQL.executeQuery(strComando);
-            if(cdr.next()){
-             out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Registrar Paquete</title>");   
-            out.println("  <link href=\"css/abra.css\" rel=\"stylesheet\">");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>El paquete ya existe</h1>");
-            out.println(" <label><a href=\"PrincipalG.jsp\">Regresar</a></label>");
-            out.println("</body>");
-            out.println("</html>");
-            }else{
-                sentenciaSQL.executeUpdate("INSERT INTO paquete VALUES(null,'"+nombre+"',"+precio+",'"+desc+"','img/"+imagen+"')");
-           out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Registrar Paquete</title>"); 
-            out.println("  <link href=\"css/abra.css\" rel=\"stylesheet\">");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>El paquete se registro exitosamente</h1>");
-            out.println(" <label><a href=\"PrincipalG.jsp\">Regresar</a></label>");
-            out.println("</body>");
-            out.println("</html>");
-                        }
-        }catch(NullPointerException e){
-       out.println(e);
-       e.printStackTrace();
-    } catch (SQLException ex) {
-         out.println(ex);
-    }  
+        processRequest(request, response);
     }
 
     /**

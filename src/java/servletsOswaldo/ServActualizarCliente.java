@@ -16,10 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Oswaldo
- */
 @WebServlet(name = "ServActualizarCliente", urlPatterns = {"/ServActualizarCliente"})
 public class ServActualizarCliente extends HttpServlet 
 {
@@ -44,29 +40,30 @@ public class ServActualizarCliente extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException 
     {
-        int id;
-        String correo,telefono,mun,cp,colonia,calle,num;
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try  
         {           
-            id=datosCliente.id_usuario;
-            correo=request.getParameter("correo");
-            telefono=request.getParameter("telefono");
-            mun=request.getParameter("muni");
-            cp=request.getParameter("cp");
-            colonia=request.getParameter("colo");
-            calle=request.getParameter("calle");
-            num=request.getParameter("num");
-            sentenciaSQL.executeUpdate("update cliente set correo='"+correo+"',telefono='"+telefono+"',municipio='"+mun+"', codigo_postal='"+cp+"', colonia='"+colonia+"',calle='"+calle+"',no_exterior='"+num+"' where id_usuario="+id);
-            RequestDispatcher rd=null;
-            rd= request.getRequestDispatcher("PrincipalUsuario.jsp");
-            rd.forward(request, response);
+            //id=datosCliente.id_usuario;
+            
+            int idOrden =Integer.parseInt(request.getParameter("uno"));
+            int idEmpleado =Integer.parseInt(request.getParameter("dos"));
+            sentenciaSQL.executeUpdate("insert into asignar_repartidor values(null,(select id_empleado from empleado where id_usuario="+idEmpleado+"),"+idOrden+",(select concat(nombre,' ',apellido_p) from empleado where id_usuario="+idEmpleado+"),'en envio')");
+            
+            sentenciaSQL.executeUpdate("update listas set estatus='asiganada' where id_pedido="+idOrden);
+            sentenciaSQL.executeUpdate("update empleado set estado='asignado' where id_usuario="+idEmpleado);
+            out.println("Se asigno");
+            out.close();
         }
         catch(NullPointerException e){
             out.println("Apuntado SQL: "+ e.getMessage());
+            System.out.println(""+e);
         } catch (SQLException ex) {
             out.println("Apuntado SQL: "+ ex.getMessage());
+             System.out.println(""+ex);
+        }catch (Exception e) {
+          
+             System.out.println(""+e);
         }
     }
     @Override

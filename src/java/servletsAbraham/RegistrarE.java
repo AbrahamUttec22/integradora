@@ -189,7 +189,8 @@ public class RegistrarE extends HttpServlet {
     // IMPORTANTE DECLARAR ESTAS CONSTANTES
     //EL STRING PATH DEBE IR CON LA RUTA DE TU PC
     //request.getPart(aqui va el nombre que le envia ajax en el post ID)
-    final String path = "C:/Users/granq/Documents/NetBeansProjects/SWPR/web/imgUsuario/";
+    //final String path = "C:/Users/granq/Documents/NetBeansProjects/SWPR/web/imgUsuario/";
+    final String path = "C:\\Users\\Oswaldo\\Desktop\\SWPR\\web\\imgUsuario\\";
 //     final String path = "C:/jonathan/granq/Documents/NetBeansProjects/SWPR/web/imgUsuario/";
     final Part filePart = request.getPart("imagen");
     final String fileName = getFileName(filePart);

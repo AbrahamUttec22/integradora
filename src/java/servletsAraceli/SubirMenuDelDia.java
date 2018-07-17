@@ -62,7 +62,22 @@ public void init(ServletConfig config) throws ServletException{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       response.setContentType("text/html");
+        PrintWriter out=response.getWriter();  
+        try{
+            out.println("<form align=center><br/>Descripción<br/>");
+            String strComando="Select * from menu_dia where id_menu=(SELECT MAX(id_menu) from menu_dia)";
+            sentenciaSQL=conecta.getSentenciaSQL();
+            ResultSet cdr=sentenciaSQL.executeQuery(strComando);
+            while (cdr.next()){
+                out.println("<textarea rows=5 cols=40>");
+                out.println(cdr.getString("descripcion"));
+                out.println("</textarea><br/><br/>");
+                out.println("Precio: &nbsp&nbsp");
+                out.println("$<input type=text id=precio value="+cdr.getString("precio")+">");
+                out.println("<br/><br/><img src="+cdr.getString("imagen")+" width=20%>");
+            } }catch(SQLException e){
+            out.println(e);    } 
     }
 
     /**
@@ -76,10 +91,10 @@ public void init(ServletConfig config) throws ServletException{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String desc, imagen, fecha="", fecha1="";
+              response.setContentType("text/html");
+        PrintWriter out=response.getWriter();      
+         String desc, imagen, fecha="", fecha1="";
        double precio;
-        response.setContentType("text/html");
-        PrintWriter out=response.getWriter();       
          try {
               precio=Double.parseDouble(request.getParameter("precio"));
         desc=request.getParameter("descripcion");
@@ -102,27 +117,9 @@ public void init(ServletConfig config) throws ServletException{
                 aux=Integer.parseInt(c.getString("maximo"));
             }
                     sentenciaSQL.executeUpdate("delete from menu_dia where id_menu="+aux+"");
-                    out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Subir Menu</title>"); 
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Ya existe menú para el día de hoy. Vuelve mañana</h1>");
-            out.println(" <label><a href=MenudelDia.jsp>Regresar</a></label>");
-            out.println("</body>");
-            out.println("</html>");
-                }else{
-                   out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Subir Menu</title>"); 
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>El Menú se subió exitosamente</h1>");
-            out.println(" <label><a href=MenudelDia.jsp>Regresar</a></label>");
-            out.println("</body>");
-            out.println("</html>");
+                     out.println("Ya existe menú para el día de hoy. Vuelve mañana");
+            }else{
+                   out.println("El Menú se subió exitosamente");
                 } 
             }                       
         }catch(NullPointerException e){
