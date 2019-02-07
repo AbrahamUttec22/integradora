@@ -13,6 +13,6 @@
         </head>
     <body>
         <h1><a href="RegistrarPaquetes.jsp">Registrar Paquetes</a></h1>
-        <h1><a href="ConsultarPaquetes.jsp">Consultar Paquetes</a></h1>
+        <h1><a href="ConsultarPaquete.jsp">Consultar Paquetes</a></h1>
     </body>
 </html>

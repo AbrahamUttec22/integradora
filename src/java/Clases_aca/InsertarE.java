@@ -3,7 +3,7 @@ package Clases_aca;
 
 import java.sql.CallableStatement;
 import Conexion.Conexion;
-import datosCliente.datosCliente;
+import datosCliente.*;
 import datosGerente.datosGerente;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -82,6 +82,7 @@ CallableStatement cs=conecta.getConexion().prepareCall(sql);
         
 cs.setString(1, m.getRfc());//s
 cs.executeQuery();//usamos executeQuery por que son registros
+
            
         } catch (Exception e) {
                System.out.println("error procedimiento"+e);
